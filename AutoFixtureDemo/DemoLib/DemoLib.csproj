@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,9 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AgeTooLowException.cs" />
     <Compile Include="Interfaces\ILogging.cs" />
-    <Compile Include="Interfaces\IMyDataHandler.cs" />
+    <Compile Include="Interfaces\IPersonHandler.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="PersonHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
