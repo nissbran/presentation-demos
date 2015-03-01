@@ -19,7 +19,10 @@
 
         public void AddNewCustomer(Customer customer)
         {
-            throw new AgeTooLowException();
+            if (customer.Age < 18)
+                throw new AgeTooLowException();
+
+           _personRepository.Add(customer);
         }
     }
 }
