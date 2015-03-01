@@ -16,13 +16,13 @@
             _logging = logging;
         }
 
-
         public void AddNewCustomer(Customer customer)
         {
             if (customer.Age < 18)
                 throw new AgeTooLowException();
 
            _personRepository.Add(customer);
+           _logging.Info("Added customer");
         }
     }
 }

@@ -18,6 +18,8 @@
         public void Setup()
         {
             _fixture = new Fixture().Customize(new AutoConfiguredNSubstituteCustomization());
+
+            _fixture.Customizations.Add(new RandomRangedNumberGenerator());
         }
 
         [Test]
@@ -25,8 +27,9 @@
         public void When_adding_an_customer_and_age_is_under_18_Then_cast_an_age_too_low_exception()
         {
             var handler = _fixture.Create<PersonHandler>();
+            var age = _fixture.CreateWithRange(0, 17);
 
-            handler.AddNewCustomer(_fixture.Build<Customer>().With(customer => customer.Age, 14).Create());
+            handler.AddNewCustomer(_fixture.Build<Customer>().With(customer => customer.Age, age).Create());
         }
 
         [Test]
@@ -35,9 +38,20 @@
             var repository = _fixture.Freeze<IRepository<Person>>();
             var handler = _fixture.Create<PersonHandler>();
 
-            handler.AddNewCustomer(_fixture.Build<Customer>().With(c => c.Age, _fixture.Create<int>() + 18).Create());
+            handler.AddNewCustomer(_fixture.Create<Customer>());
 
             repository.Received().Add(Arg.Any<Customer>());
+        }
+
+        [Test]
+        public void When_adding_an_customer_Then_logg_info_row()
+        {
+            var logging = _fixture.Freeze<ILogging>();
+            var handler = _fixture.Create<PersonHandler>();
+
+            handler.AddNewCustomer(_fixture.Create<Customer>());
+
+            logging.Received().Info(Arg.Any<string>());
         }
     }
 }

@@ -12,6 +12,7 @@
 
         public string LastName { get; set; }
 
+        [Range(18, 200)]
         public int Age { get; set; }
     }
 }
