@@ -39,6 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\packages\AutoFixture.NUnit2.3.24.1\lib\net40\nunit.core.interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -49,6 +52,12 @@
     <Reference Include="Ploeh.AutoFixture.AutoNSubstitute, Version=3.24.1.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoFixture.AutoNSubstitute.3.24.1\lib\net40\Ploeh.AutoFixture.AutoNSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.NUnit2">
+      <HintPath>..\packages\AutoFixture.NUnit2.3.24.1\lib\net40\Ploeh.AutoFixture.NUnit2.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture.NUnit2.Addins">
+      <HintPath>..\packages\AutoFixture.NUnit2.3.24.1\lib\net40\Ploeh.AutoFixture.NUnit2.Addins.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -65,9 +74,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FixtureExtensions.cs" />
-    <Compile Include="PersonHandler_Test.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="MsTest\PersonHandlerMsTest.cs" />
+    <Compile Include="NUnit\AutoNSubsituteData.cs" />
+    <Compile Include="Customizations\FixtureExtensions.cs" />
+    <Compile Include="LocalAddin.cs" />
+    <Compile Include="NUnit\PersonHandlerNUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +91,7 @@
       <Name>DemoLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

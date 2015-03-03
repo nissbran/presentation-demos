@@ -1,5 +1,6 @@
 ﻿namespace DemoLib
 {
+    using System.Runtime.InteropServices.WindowsRuntime;
     using Exceptions;
     using Interfaces;
     using Model;
@@ -9,8 +10,8 @@
         private readonly IRepository<Person> _personRepository;
         private readonly ILogging _logging;
 
-        public PersonHandler(IRepository<Person> personRepository,
-                             ILogging logging)
+        public PersonHandler(
+                             ILogging logging, IRepository<Person> personRepository)
         {
             _personRepository = personRepository;
             _logging = logging;

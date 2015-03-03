@@ -1,4 +1,4 @@
-﻿namespace DemoLibUnitTest
+﻿namespace DemoLibUnitTest.Customizations
 {
     using Ploeh.AutoFixture.Kernel;
 
