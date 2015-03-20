@@ -28,18 +28,18 @@
         public void When_adding_an_customer_and_age_is_under_18_Then_cast_an_age_too_low_exception()
         {
             var age = _fixture.CreateWithRange(0, 17);
-            var handler = _fixture.Create<PersonHandler>();
+            var sut = _fixture.Create<PersonHandler>();
 
-            handler.AddNewCustomer(_fixture.Build<Customer>().With(customer => customer.Age, age).Create());
+            sut.AddNewCustomer(_fixture.Build<Customer>().With(customer => customer.Age, age).Create());
         }
 
         [TestMethod]
         public void When_adding_an_customer_with_the_correct_age_Then_it_should_persist_the_data_in_repository()
         {
             var repository = _fixture.Freeze<IRepository<Person>>();
-            var handler = _fixture.Create<PersonHandler>();
+            var sut = _fixture.Create<PersonHandler>();
 
-            handler.AddNewCustomer(_fixture.Create<Customer>());
+            sut.AddNewCustomer(_fixture.Create<Customer>());
 
             repository.Received().Add(Arg.Any<Customer>());
         }
@@ -48,9 +48,9 @@
         public void When_adding_an_customer_Then_logg_info_row()
         {
             var logging = _fixture.Freeze<ILogging>();
-            var handler = _fixture.Create<PersonHandler>();
+            var sut = _fixture.Create<PersonHandler>();
 
-            handler.AddNewCustomer(_fixture.Create<Customer>());
+            sut.AddNewCustomer(_fixture.Create<Customer>());
 
             logging.Received().Info(Arg.Any<string>());
         }

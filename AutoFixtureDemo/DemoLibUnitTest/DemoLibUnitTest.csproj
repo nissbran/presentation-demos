@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NSubstitute, Version=1.8.1.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
@@ -74,11 +75,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Customizations\CollectionRepositoryCustomization.cs" />
+    <Compile Include="Fakes\CollectionRepository.cs" />
     <Compile Include="MsTest\PersonHandlerMsTest.cs" />
     <Compile Include="NUnit\AutoNSubsituteData.cs" />
     <Compile Include="Customizations\FixtureExtensions.cs" />
     <Compile Include="LocalAddin.cs" />
     <Compile Include="NUnit\PersonHandlerNUnitTest.cs" />
+    <Compile Include="NUnit\PersonHandlerNUnitAutoDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
