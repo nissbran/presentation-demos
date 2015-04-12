@@ -22,5 +22,10 @@
             return registrationNumber.Value;
         }
 
+        public static implicit operator CarRegistrationNumber(string registrationNumber)
+        {
+            return new CarRegistrationNumber(registrationNumber);
+        }
+
     }
 }

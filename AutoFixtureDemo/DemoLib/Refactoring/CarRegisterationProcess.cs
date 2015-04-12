@@ -1,6 +1,5 @@
 ﻿namespace DemoLib.Refactoring
 {
-    using System;
     using Exceptions;
     using Interfaces;
     using Model;
@@ -34,7 +33,7 @@
                 throw new CarRegistrationNumberAlreadyExistException();
 
             _carRepository.Add(car);
-            _queue.Send(car.RegistrationNumber, car.FuelType);
+            _queue.Send((string)car.ValueObjectRegistrationNumber, car.FuelType);
 
             return true;
         }

@@ -58,7 +58,7 @@
 
             sut.RegisterVehicle(car, _fixture.Create<Owner>());
 
-            repository.Received().Send(car.RegistrationNumber, Arg.Any<FuelType>());
+            repository.Received().Send(car.ValueObjectRegistrationNumber.Value, Arg.Any<FuelType>());
         }
 
         [Test]
