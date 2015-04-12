@@ -76,14 +76,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Customizations\CollectionRepositoryCustomization.cs" />
+    <Compile Include="Customizations\CarRegistrationNumberGenerator.cs" />
     <Compile Include="Fakes\CollectionRepository.cs" />
-    <Compile Include="MsTest\PersonHandlerMsTest.cs" />
+    <Compile Include="MsTest\CustomerHandlerMsTest.cs" />
     <Compile Include="NUnit\AutoNSubsituteData.cs" />
     <Compile Include="Customizations\FixtureExtensions.cs" />
     <Compile Include="LocalAddin.cs" />
-    <Compile Include="NUnit\PersonHandlerNUnitTest.cs" />
-    <Compile Include="NUnit\PersonHandlerNUnitAutoDataTest.cs" />
+    <Compile Include="NUnit\CustomerHandlerNUnitTest.cs" />
+    <Compile Include="NUnit\CustomerHandlerNUnitAutoDataTest.cs" />
+    <Compile Include="NUnit\AutoFixtureBasic.cs" />
+    <Compile Include="NUnit\PersonRegisterProcessTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleRegistrationTests\Refactoring\CarRegistrationProcessTest.cs" />
+    <Compile Include="VehicleRegistrationTests\Refactoring\VehicleRegistrationProcessTest.cs" />
+    <Compile Include="VehicleRegistrationTests\VehicleRegistrationProcessTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

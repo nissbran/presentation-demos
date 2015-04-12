@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using DemoLib.Interfaces;
     using DemoLib.Model;
+    using DemoLib.Model.Vehicles;
     using Fakes;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Kernel;
@@ -16,7 +17,9 @@
         private static readonly Dictionary<Type, dynamic> IdSelectors =
             new Dictionary<Type, dynamic>
             {
-                { typeof(Customer), new Func<Customer, object>(c => c.Id) },
+                { typeof(Person), new Func<Person, object>(c => c.Id) },
+                { typeof(Car), new Func<Car, object>(c => c.Id) },
+                { typeof(Bicycle), new Func<Bicycle, object>(c => c.Id) },
             };
 
         public void Customize(IFixture fixture)

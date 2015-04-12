@@ -1,8 +1,5 @@
 ﻿namespace DemoLibUnitTest.Customizations
 {
-    using System;
-    using System.Linq.Expressions;
-    using Ploeh.AutoFixture.Dsl;
     using Ploeh.AutoFixture.Kernel;
 
     public static class FixtureExtensions
@@ -14,19 +11,11 @@
             return (T)context.Resolve(new RangedNumberRequest(typeof(T), minimum, maximum));
         }
 
-        public static string CreateStringWithPattern(this ISpecimenBuilder builder, string pattern)
+        public static string CreateConstrainedString(this ISpecimenBuilder builder, int length)
         {
             var context = new SpecimenContext(builder);
 
-            return (string)context.Resolve(new RegularExpressionRequest(pattern));
-        }
-
-        public static IPostprocessComposer<T> WithPattern<T>(this IPostprocessComposer<T> composer,
-                                                           Expression<Func<T, object>> propertyPicker,
-                                                           string pattern)
-        {
-            return composer.With(propertyPicker,
-                                 new SpecimenContext(composer).Resolve(new RegularExpressionRequest(pattern)));
+            return (string)context.Resolve(new ConstrainedStringRequest(length, length));
         }
     }
 }

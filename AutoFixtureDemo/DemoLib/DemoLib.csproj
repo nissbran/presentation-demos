@@ -41,14 +41,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\AgeTooLowException.cs" />
+    <Compile Include="Exceptions\CarRegistrationNumberAlreadyExistException.cs" />
+    <Compile Include="Exceptions\CarRegistrationNumberIsIncorrectException.cs" />
+    <Compile Include="Interfaces\IBicycleFrameNumberRegistrationQueue.cs" />
     <Compile Include="Interfaces\ILogging.cs" />
-    <Compile Include="Interfaces\IPersonHandler.cs" />
+    <Compile Include="Interfaces\ICustomerHandler.cs" />
+    <Compile Include="Interfaces\ICarRegistrationExternalQueue.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IVehicleRegisterationProcess.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\Company.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Owner.cs" />
+    <Compile Include="Model\Vehicles\CarRegistrationNumber.cs" />
+    <Compile Include="Model\Vehicles\Bicycle.cs" />
+    <Compile Include="Model\Vehicles\Car.cs" />
+    <Compile Include="Model\Vehicles\FuelType.cs" />
+    <Compile Include="Model\Vehicles\Vehicle.cs" />
     <Compile Include="Model\Person.cs" />
-    <Compile Include="PersonHandler.cs" />
+    <Compile Include="CustomerHandler.cs" />
+    <Compile Include="Refactoring\BicycleRegisterationProcess.cs" />
+    <Compile Include="Refactoring\CarRegisterationProcess.cs" />
+    <Compile Include="VehicleRegisterationProcess.cs" />
+    <Compile Include="PersonRegisterProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

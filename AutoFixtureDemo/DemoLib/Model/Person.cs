@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public abstract class Person
+    public class Person : Customer
     {
         [Required]
         public int Id { get; set; }

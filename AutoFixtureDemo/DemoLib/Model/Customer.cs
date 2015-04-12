@@ -1,6 +1,6 @@
 ﻿namespace DemoLib.Model
 {
-    public class Customer : Person
+    public abstract class Customer
     {
         public string ReferenceNumber { get; set; }
     }
