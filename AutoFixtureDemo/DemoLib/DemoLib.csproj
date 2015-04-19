@@ -52,6 +52,7 @@
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\Company.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerMetaData.cs" />
     <Compile Include="Model\Owner.cs" />
     <Compile Include="Model\Vehicles\CarRegistrationNumber.cs" />
     <Compile Include="Model\Vehicles\Bicycle.cs" />

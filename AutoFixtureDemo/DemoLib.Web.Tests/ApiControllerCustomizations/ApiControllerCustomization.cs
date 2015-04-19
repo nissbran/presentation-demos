@@ -23,11 +23,6 @@
         {
             public void Execute(object specimen, ISpecimenContext context)
             {
-                if (specimen == null)
-                    throw new ArgumentNullException("specimen");
-                if (context == null)
-                    throw new ArgumentNullException("context");
-
                 var target = specimen as ApiController;
                 if (target == null)
                     throw new ArgumentException(
@@ -45,6 +40,7 @@
                 var requestType = request as Type;
                 if (requestType == null)
                     return false;
+
                 return typeof (ApiController).IsAssignableFrom(requestType);
             }
         }

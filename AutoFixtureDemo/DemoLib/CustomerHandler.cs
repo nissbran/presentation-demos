@@ -1,5 +1,6 @@
 ﻿namespace DemoLib
 {
+    using System.Data;
     using Exceptions;
     using Interfaces;
     using Model;
@@ -23,6 +24,16 @@
 
             _customerRepository.Add(customer);
            _logging.Info("Added customer");
+        }
+
+        public bool AddNewCustomer(Customer customer)
+        {
+            if (customer == null)
+                return false;
+
+            _customerRepository.Add(customer);
+
+            return true;
         }
     }
 }
