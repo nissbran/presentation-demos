@@ -9,7 +9,6 @@
         {
             if (person.Age < 18)
                 throw new AgeTooLowException();
-
         }
     }
 }

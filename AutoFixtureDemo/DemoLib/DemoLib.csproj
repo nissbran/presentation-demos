@@ -40,17 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo1\CustomerInfoCleaner.cs" />
+    <Compile Include="Demo2\CustomerRegistrationProcess.cs" />
+    <Compile Include="Exceptions\CustomerHasToLowCreditScoreException.cs" />
     <Compile Include="Exceptions\AgeTooLowException.cs" />
     <Compile Include="Exceptions\CarRegistrationNumberAlreadyExistException.cs" />
     <Compile Include="Exceptions\CarRegistrationNumberIsIncorrectException.cs" />
     <Compile Include="Interfaces\IBicycleFrameNumberRegistrationQueue.cs" />
+    <Compile Include="Interfaces\IExternalCreditCheckProcess.cs" />
     <Compile Include="Interfaces\ILogging.cs" />
     <Compile Include="Interfaces\ICustomerHandler.cs" />
     <Compile Include="Interfaces\ICarRegistrationExternalQueue.cs" />
+    <Compile Include="Interfaces\IMyServiceBus.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IVehicleRegisterationProcess.cs" />
     <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\Commands\Command.cs" />
     <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\CreditCheckResult.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\CustomerMetaData.cs" />
     <Compile Include="Model\Owner.cs" />
@@ -67,6 +74,7 @@
     <Compile Include="PersonRegisterProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
