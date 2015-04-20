@@ -29,8 +29,9 @@
         public void When_adding_an_customer_and_age_is_under_18_Then_cast_an_age_too_low_exception(int age)
         {
             var logging = Substitute.For<ILogging>();
-            var repository = Substitute.For<IRepository<Customer>>();
-            var sut = new CustomerHandler(logging, repository);
+            var personRepository = Substitute.For<IRepository<Person>>();
+            var customerRepository = Substitute.For<IRepository<Customer>>();
+            var sut = new CustomerHandler(logging, customerRepository, personRepository);
             var customer = new Person
             {
                 Age = age
@@ -53,7 +54,7 @@
         [Test]
         public void When_adding_an_customer_with_the_correct_age_Then_it_should_persist_the_data_in_repository()
         {
-            var repository = _fixture.Freeze<IRepository<Customer>>();
+            var repository = _fixture.Freeze<IRepository<Person>>();
             var sut = _fixture.Create<CustomerHandler>();
 
             sut.AddNewPersonCustomer(_fixture.Create<Person>());
@@ -73,16 +74,18 @@
             logging.Received().Info(Arg.Any<string>());
         }
 
-        //[Test]
-        //public void When_adding_a_new_customer_with_correct_info_Then_return_true()
-        //{
-        //    var fixture = new Fixture();
-        //    var sut = new CustomerHandler();
+        [Test]
+        public void InjectTest()
+        {
+            _fixture.Inject<Person>(new Owner());
 
-        //    var result = sut.AddNewCustomer(fixture.Create<Customer>());
+            var test = _fixture.Create<Person>();
 
-        //    Assert.IsTrue(result);
-        //}
+            _fixture.Inject<Person>(new Person());
+
+            var test2 = _fixture.Create<Person>();
+        }
+
 
         private Customer CreateCustomer()
         {

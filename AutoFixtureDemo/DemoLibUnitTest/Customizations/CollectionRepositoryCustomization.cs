@@ -18,6 +18,7 @@
             new Dictionary<Type, dynamic>
             {
                 { typeof(Person), new Func<Person, object>(c => c.Id) },
+                { typeof(Customer), new Func<Customer, object>(c => c.Id) },
                 { typeof(Car), new Func<Car, object>(c => c.Id) },
                 { typeof(Bicycle), new Func<Bicycle, object>(c => c.Id) },
             };

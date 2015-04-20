@@ -1,6 +1,5 @@
 ﻿namespace DemoLib
 {
-    using System.Data;
     using Exceptions;
     using Interfaces;
     using Model;
@@ -9,12 +8,15 @@
     {
         private readonly ILogging _logging;
         private readonly IRepository<Customer> _customerRepository;
+        private readonly IRepository<Person> _personRepository;
 
         public CustomerHandler(ILogging logging, 
-                               IRepository<Customer> customerRepository)
+                               IRepository<Customer> customerRepository,
+                               IRepository<Person> personRepository )
         {
             _logging = logging;
             _customerRepository = customerRepository;
+            _personRepository = personRepository;
         }
 
         public void AddNewPersonCustomer(Person customer)
@@ -22,7 +24,7 @@
             if (customer.Age < 18)
                 throw new AgeTooLowException();
 
-            _customerRepository.Add(customer);
+            _personRepository.Add(customer);
            _logging.Info("Added customer");
         }
 

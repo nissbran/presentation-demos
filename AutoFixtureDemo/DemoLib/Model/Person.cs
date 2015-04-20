@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class Person : Customer
+    public class Person
     {
         [Required]
         public int Id { get; set; }

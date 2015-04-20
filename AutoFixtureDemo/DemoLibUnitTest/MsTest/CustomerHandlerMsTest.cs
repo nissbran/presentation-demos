@@ -36,7 +36,7 @@
         [TestMethod]
         public void When_adding_an_customer_with_the_correct_age_Then_it_should_persist_the_data_in_repository()
         {
-            var repository = _fixture.Freeze<IRepository<Customer>>();
+            var repository = _fixture.Freeze<IRepository<Person>>();
             var sut = _fixture.Create<CustomerHandler>();
 
             sut.AddNewPersonCustomer(_fixture.Create<Person>());

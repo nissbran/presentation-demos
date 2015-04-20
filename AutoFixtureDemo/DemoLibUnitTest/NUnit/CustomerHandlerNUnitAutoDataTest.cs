@@ -27,7 +27,7 @@
 
         [Test, AutoNSubsituteData]
         public void When_adding_an_customer_with_the_correct_age_Then_it_should_persist_the_data_in_repository(
-            [Frozen]IRepository<Customer> repository,
+            [Frozen]IRepository<Person> repository,
             CustomerHandler sut,
             Person customer)
         {

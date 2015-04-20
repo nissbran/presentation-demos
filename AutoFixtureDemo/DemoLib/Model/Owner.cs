@@ -1,9 +1,7 @@
 ﻿namespace DemoLib.Model
 {
-    public class Owner
+    public class Owner : Person
     {
-        public int Id { get; set; }
-
         public string CivicRegistationNumber { get; set; }
     }
 }
