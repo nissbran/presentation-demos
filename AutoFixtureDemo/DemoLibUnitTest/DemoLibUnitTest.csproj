@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="Customizations\CollectionRepositoryCustomization.cs" />
     <Compile Include="Customizations\CarRegistrationNumberGenerator.cs" />
+    <Compile Include="Demos\Old_TestDemo1\CustomerInfoCleanerTests.cs" />
+    <Compile Include="Demos\Old_TestDemo2\CustomerRegistrationProcessTests.cs" />
     <Compile Include="Demos\TestDemo1\CustomerInfoCleanerTests.cs" />
     <Compile Include="Demos\TestDemo2\CustomerRegistrationProcessTests.cs" />
     <Compile Include="Fakes\CollectionRepository.cs" />

@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Demo1\CustomerInfoCleaner.cs" />
     <Compile Include="Demo2\CustomerRegistrationProcess.cs" />
+    <Compile Include="Old_Demo1\CustomerInfoCleaner.cs" />
+    <Compile Include="Old_Demo2\CustomerRegistrationProcess.cs" />
     <Compile Include="Exceptions\CustomerHasToLowCreditScoreException.cs" />
     <Compile Include="Exceptions\AgeTooLowException.cs" />
     <Compile Include="Exceptions\CarRegistrationNumberAlreadyExistException.cs" />
