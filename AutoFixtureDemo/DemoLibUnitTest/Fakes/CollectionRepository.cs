@@ -20,7 +20,7 @@
             _idSelector = idSelector;
         }
 
-        public T Get(long id)
+        public T Get(object id)
         {
             return _allData.OfType<T>().SingleOrDefault(o => _idSelector(o).Equals(id));
         }

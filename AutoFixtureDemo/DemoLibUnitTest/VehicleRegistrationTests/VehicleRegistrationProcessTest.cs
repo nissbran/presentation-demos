@@ -30,7 +30,6 @@
             _registrationNumber = _fixture.CreateConstrainedString(6);
 
             _fixture.Customize<Car>(composer => composer.With(c => c.RegistrationNumber, _registrationNumber));
-            //_fixture.Register<Vehicle>(() => _fixture.Create<Car>());
             _fixture.Inject<Vehicle>(_fixture.Create<Car>());
         }
 

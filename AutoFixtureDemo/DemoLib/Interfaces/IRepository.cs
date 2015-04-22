@@ -4,7 +4,7 @@
 
     public interface IRepository<T> where T : class
     {
-        T Get(long id);
+        T Get(object id);
 
         IEnumerable<T> GetAll(); 
 
