@@ -7,7 +7,8 @@
     {
         public Customer CleanSensitiveCustomerInfo(Customer customer)
         {
-            throw new NotImplementedException();
+            customer.SocialSecurityNumber = null;
+            return customer;
         }
     }
 }
