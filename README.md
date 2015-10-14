@@ -1,2 +1,2 @@
-# autofixture-presentations
-Presentation demos for autofixture
+# presentation-demos
+Demos from presentations
