@@ -23,6 +23,7 @@
         public void When_registering_customer_Then_add_to_customer_repository()
         {
             var repository = _fixture.Freeze<IRepository<Customer>>();
+            repository.Get(Arg.Any<int>()).Returns(_fixture.Create<Customer>());
             var sut = _fixture.Create<CustomerRegistrationProcess>();
 
             sut.RegisterCustomer(_fixture.Create<Customer>());
@@ -39,6 +40,16 @@
             sut.RegisterCustomer(_fixture.Create<Customer>());
 
             logging.Received().Info(Arg.Any<string>());
+        }
+
+        [Test]
+        public void When_registering()
+        {
+            for (int i = 0; i < 10000; i++)
+            {
+                //var sut = _fixture.Create<CustomerRegistrationProcess>();
+                var customer = _fixture.Create<Customer>();
+            }
         }
     }
 }

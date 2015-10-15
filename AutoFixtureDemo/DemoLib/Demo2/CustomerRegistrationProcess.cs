@@ -20,7 +20,8 @@
         {
             _customerRepository.Add(customer);
             _logging.Info("Hej");
-            
+            var test = _customerRepository.Get(customer.Id);
+
         }
     }
 }

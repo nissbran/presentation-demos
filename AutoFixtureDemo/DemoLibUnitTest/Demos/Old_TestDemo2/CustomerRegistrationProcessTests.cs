@@ -3,6 +3,7 @@
     using DemoLib.Exceptions;
     using DemoLib.Interfaces;
     using DemoLib.Model;
+    using DemoLib.Model.Vehicles;
     using DemoLib.Old_Demo2;
     using global::NUnit.Framework;
     using NSubstitute;
@@ -52,6 +53,15 @@
             var sut = _fixture.Create<CustomerRegistrationProcess>();
 
             sut.RegisterCustomer(_fixture.Create<Customer>());
+        }
+
+        [Test]
+        public void When_registering()
+        {
+            for (int i = 0; i < 10000; i++)
+            {
+                var sut = _fixture.Create<CustomerRegistrationProcess>();
+            }
         }
     }
 }

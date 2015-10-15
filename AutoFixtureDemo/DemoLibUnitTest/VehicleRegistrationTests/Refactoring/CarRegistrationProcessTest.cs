@@ -76,9 +76,10 @@
         [Test, ExpectedException(typeof(CarRegistrationNumberAlreadyExistException))]
         public void When_a_car_is_registering_and_a_car_with_same_registration_number_exist_in_repo_Then_cast_an_exception()
         {
-            var car = _fixture.Create<Car>();
             _fixture.Customize(new CollectionRepositoryCustomization());
+            var car = _fixture.Create<Car>();
             _fixture.Freeze<IRepository<Car>>().Add(car);
+            _fixture.Freeze<IRepository<Customer>>().Add(new Customer());
             var sut = _fixture.Create<CarRegisterationProcess>();
 
             sut.RegisterVehicle(car, _fixture.Create<Owner>());
