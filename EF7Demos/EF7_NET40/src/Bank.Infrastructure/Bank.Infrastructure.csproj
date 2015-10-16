@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3DB5C9D-0ABA-4A66-A001-2044FF7CD94D}</ProjectGuid>
+    <ProjectGuid>{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bank.Domain</RootNamespace>
-    <AssemblyName>Bank.Domain</AssemblyName>
+    <RootNamespace>Bank.Infrastructure</RootNamespace>
+    <AssemblyName>Bank.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,17 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BankTransaction.cs" />
-    <Compile Include="Models\Customer\BankCustomer.cs" />
-    <Compile Include="Models\Customer\Company.cs" />
-    <Compile Include="Models\Customer\PrivatePerson.cs" />
+    <Compile Include="RegistrationNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bank.Infrastructure\Bank.Infrastructure.csproj">
-      <Project>{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}</Project>
-      <Name>Bank.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

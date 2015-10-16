@@ -5,10 +5,11 @@ using Microsoft.Data.Entity;
 namespace Bank.Repository.Context
 {
     using System.Configuration;
+    using Domain.Models.Customer;
 
     public class BankContext : DbContext
     {
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<BankCustomer> Customers { get; set; }
         public DbSet<BankTransaction> Transactions { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

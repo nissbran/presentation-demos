@@ -13,7 +13,7 @@ namespace Bank.Repository.Migrations
     {
         public override string Id
         {
-            get { return "20151014214221_Initial"; }
+            get { return "20151016083549_Initial"; }
         }
 
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,21 +37,44 @@ namespace Bank.Repository.Migrations
                     b.Key("BankTransactionId");
                 });
 
-            modelBuilder.Entity("Bank.Domain.Models.Customer", b =>
+            modelBuilder.Entity("Bank.Domain.Models.Customer.BankCustomer", b =>
                 {
                     b.Property<long>("CustomerId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomerType")
+                        .Required();
+
+                    b.Key("CustomerId");
+
+                    b.Annotation("Relational:DiscriminatorProperty", "CustomerType");
+
+                    b.Annotation("Relational:DiscriminatorValue", "BankCustomer");
+                });
+
+            modelBuilder.Entity("Bank.Domain.Models.Customer.Company", b =>
+                {
+                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
+
+                    b.Property<string>("Name");
+
+                    b.Annotation("Relational:DiscriminatorValue", "Company");
+                });
+
+            modelBuilder.Entity("Bank.Domain.Models.Customer.PrivatePerson", b =>
+                {
+                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Key("CustomerId");
+                    b.Annotation("Relational:DiscriminatorValue", "PrivatePerson");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
-                    b.Reference("Bank.Domain.Models.Customer")
+                    b.Reference("Bank.Domain.Models.Customer.BankCustomer")
                         .InverseCollection()
                         .ForeignKey("CustomerId");
                 });

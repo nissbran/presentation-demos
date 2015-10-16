@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8028184C-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF7TestConsoleApp", "test\EF7TestConsoleApp\EF7TestConsoleApp.csproj", "{16ECD8D5-A264-423F-9F90-651E712AFB3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Infrastructure", "src\Bank.Infrastructure\Bank.Infrastructure.csproj", "{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{16ECD8D5-A264-423F-9F90-651E712AFB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16ECD8D5-A264-423F-9F90-651E712AFB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16ECD8D5-A264-423F-9F90-651E712AFB3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{C3DB5C9D-0ABA-4A66-A001-2044FF7CD94D} = {BD6A0C37-CDEE-49F4-AF2D-66A1FE2A09E6}
 		{11CD782A-4581-4DCD-972B-87DBA9427AE3} = {BD6A0C37-CDEE-49F4-AF2D-66A1FE2A09E6}
 		{16ECD8D5-A264-423F-9F90-651E712AFB3B} = {8028184C-A9B3-4975-891C-F510B94FDC45}
+		{72D7051D-5512-40DF-9B2F-7E29EFBD15EB} = {BD6A0C37-CDEE-49F4-AF2D-66A1FE2A09E6}
 	EndGlobalSection
 EndGlobal

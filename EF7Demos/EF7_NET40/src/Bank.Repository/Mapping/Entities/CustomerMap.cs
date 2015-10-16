@@ -1,6 +1,6 @@
 ﻿namespace Bank.Repository.Mapping.Entities
 {
-    using Bank.Domain.Models;
+    using Domain.Models.Customer;
     using Interfaces;
     using Microsoft.Data.Entity;
 
@@ -9,8 +9,19 @@
         public void ConfigureModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Customer>()
+                .Entity<BankCustomer>()
                 .Key(customer => customer.CustomerId);
+
+            modelBuilder.Entity<BankCustomer>().Property<string>("RegistrationNumber");
+            modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
+
+            modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
+            modelBuilder.Entity<Company>().BaseType<BankCustomer>();
+
+            modelBuilder.Entity<BankCustomer>().Discriminator("CustomerType", typeof (string));
+            //modelBuilder.Entity<BankCustomer>().Discriminator("CustomerType", typeof (int))
+            //    .HasValue(typeof(PrivatePerson), 1)
+            //    .HasValue(typeof(Company), 2);
         }
     }
 }

@@ -136,9 +136,9 @@
     <Compile Include="Mapping\Entities\CustomerMap.cs" />
     <Compile Include="Mapping\EntityMappingConfiguration.cs" />
     <Compile Include="Mapping\Interfaces\IEntityMap.cs" />
-    <Compile Include="Migrations\20151014214221_Initial.cs" />
-    <Compile Include="Migrations\20151014214221_Initial.designer.cs">
-      <DependentUpon>20151014214221_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\20151016083549_Initial.cs" />
+    <Compile Include="Migrations\20151016083549_Initial.designer.cs">
+      <DependentUpon>20151016083549_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BankContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +147,10 @@
     <ProjectReference Include="..\Bank.Domain\Bank.Domain.csproj">
       <Project>{c3db5c9d-0aba-4a66-a001-2044ff7cd94d}</Project>
       <Name>Bank.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bank.Infrastructure\Bank.Infrastructure.csproj">
+      <Project>{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}</Project>
+      <Name>Bank.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

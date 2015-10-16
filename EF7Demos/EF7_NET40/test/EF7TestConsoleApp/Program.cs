@@ -1,33 +1,38 @@
 ﻿namespace EF7TestConsoleApp
 {
     using System.Linq;
-    using Bank.Domain.Models;
+    using Bank.Domain.Models.Customer;
     using Bank.Repository.Context;
-    using Bank.Repository.Mapping.Entities;
+    using Ploeh.AutoFixture;
 
     class Program
     {
         static void Main(string[] args)
         {
+            var fixture = new Fixture();
             using (var context = new BankContext())
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+            }
 
-                var customer = new Customer("Nisse", "Nissesson");
-                context.Customers.Add(customer);
-                context.Customers.Add(new Customer("Nisse", "Nissesson"));
-                context.Customers.Add(new Customer("Nisse", "Nissesson"));
-
-                context.Transactions.Add(new BankTransaction(customer, 100));
-
-                context.SaveChanges();
+            for (int i = 0; i < 10; i++)
+            {
+                using (var context = new BankContext())
+                {
+                    var customer = fixture.Create<PrivatePerson>();
+                    context.Customers.Add(customer);
+                    context.Customers.Add(fixture.Create<Company>());
+                    context.Customers.Add(fixture.Create<PrivatePerson>());
+                    
+                    context.SaveChanges();
+                }
             }
 
             using (var context = new BankContext())
             {
                 var customers = context.Customers
-                    .Where(customer => customer.FirstName == "Nisse")
+                    .Where(customer => customer.RegistrationNumber == "test")
                     .ToList();
 
                 var transactions = context.Transactions.ToList();

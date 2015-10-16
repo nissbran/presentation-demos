@@ -1,16 +1,17 @@
 ﻿namespace Bank.Domain.Models
 {
     using System;
+    using Customer;
 
     public class BankTransaction
     {
         public Guid BankTransactionId { get; protected set; }
 
-        public Customer Customer { get; private set; }
+        public BankCustomer Customer { get; private set; }
 
         public decimal Amount { get; private set; }
 
-        public BankTransaction(Customer customer, decimal amount)
+        public BankTransaction(BankCustomer customer, decimal amount)
         {
             Customer = customer;
             Amount = amount;

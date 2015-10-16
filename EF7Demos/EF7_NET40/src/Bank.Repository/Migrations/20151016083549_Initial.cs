@@ -12,16 +12,18 @@ namespace Bank.Repository.Migrations
                 name: "DefaultSequence",
                 incrementBy: 10);
             migrationBuilder.CreateTable(
-                name: "Customer",
+                name: "BankCustomer",
                 columns: table => new
                 {
                     CustomerId = table.Column<long>(isNullable: false),
+                    CustomerType = table.Column<string>(isNullable: false),
+                    Name = table.Column<string>(isNullable: true),
                     FirstName = table.Column<string>(isNullable: true),
                     LastName = table.Column<string>(isNullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customer", x => x.CustomerId);
+                    table.PrimaryKey("PK_BankCustomer", x => x.CustomerId);
                 });
             migrationBuilder.CreateTable(
                 name: "BankTransaction",
@@ -35,9 +37,9 @@ namespace Bank.Repository.Migrations
                 {
                     table.PrimaryKey("PK_BankTransaction", x => x.BankTransactionId);
                     table.ForeignKey(
-                        name: "FK_BankTransaction_Customer_CustomerId",
+                        name: "FK_BankTransaction_BankCustomer_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customer",
+                        principalTable: "BankCustomer",
                         principalColumn: "CustomerId");
                 });
         }
@@ -46,7 +48,7 @@ namespace Bank.Repository.Migrations
         {
             migrationBuilder.DropSequence("DefaultSequence");
             migrationBuilder.DropTable("BankTransaction");
-            migrationBuilder.DropTable("Customer");
+            migrationBuilder.DropTable("BankCustomer");
         }
     }
 }

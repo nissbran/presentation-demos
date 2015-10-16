@@ -85,6 +85,10 @@
       <HintPath>..\..\packages\Microsoft.Framework.OptionsModel.1.0.0-beta7\lib\net45\Microsoft.Framework.OptionsModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture, Version=3.36.8.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoFixture.3.36.8\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.0.0-beta-002\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
@@ -120,6 +124,10 @@
     <ProjectReference Include="..\..\src\Bank.Domain\Bank.Domain.csproj">
       <Project>{C3DB5C9D-0ABA-4A66-A001-2044FF7CD94D}</Project>
       <Name>Bank.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bank.Infrastructure\Bank.Infrastructure.csproj">
+      <Project>{72d7051d-5512-40df-9b2f-7e29efbd15eb}</Project>
+      <Name>Bank.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bank.Repository\Bank.Repository.csproj">
       <Project>{11cd782a-4581-4dcd-972b-87dba9427ae3}</Project>
