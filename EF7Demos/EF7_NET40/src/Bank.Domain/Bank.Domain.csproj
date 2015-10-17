@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bank.Infrastructure\Bank.Infrastructure.csproj">
-      <Project>{72D7051D-5512-40DF-9B2F-7E29EFBD15EB}</Project>
+      <Project>{72d7051d-5512-40df-9b2f-7e29efbd15eb}</Project>
       <Name>Bank.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>

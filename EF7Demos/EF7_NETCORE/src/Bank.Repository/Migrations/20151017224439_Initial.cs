@@ -9,17 +9,17 @@ namespace Bank.Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateSequence(
-                name: "DefaultSequence",
+                name: "EntityFrameworkHiLoSequence",
                 incrementBy: 10);
             migrationBuilder.CreateTable(
                 name: "BankCustomer",
                 columns: table => new
                 {
-                    CustomerId = table.Column<long>(isNullable: false),
-                    CustomerType = table.Column<string>(isNullable: false),
-                    Name = table.Column<string>(isNullable: true),
-                    FirstName = table.Column<string>(isNullable: true),
-                    LastName = table.Column<string>(isNullable: true)
+                    CustomerId = table.Column<long>(nullable: false),
+                    CustomerType = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,9 +29,9 @@ namespace Bank.Repository.Migrations
                 name: "BankTransaction",
                 columns: table => new
                 {
-                    BankTransactionId = table.Column<Guid>(isNullable: false),
-                    Amount = table.Column<decimal>(isNullable: false),
-                    CustomerId = table.Column<long>(isNullable: false)
+                    BankTransactionId = table.Column<Guid>(nullable: false),
+                    Amount = table.Column<decimal>(nullable: false),
+                    CustomerId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace Bank.Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropSequence("DefaultSequence");
+            migrationBuilder.DropSequence("EntityFrameworkHiLoSequence");
             migrationBuilder.DropTable("BankTransaction");
             migrationBuilder.DropTable("BankCustomer");
         }

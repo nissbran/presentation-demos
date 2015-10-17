@@ -4,7 +4,6 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Bank.Repository.Context;
-using Microsoft.Data.Entity.SqlServer.Metadata;
 
 namespace Bank.Repository.Migrations
 {
@@ -14,11 +13,10 @@ namespace Bank.Repository.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta7-15540")
-                .Annotation("SqlServer:HiLoSequenceName", "DefaultSequence")
-                .Annotation("SqlServer:HiLoSequencePoolSize", 5)
-                .Annotation("SqlServer:Sequence:.DefaultSequence", "'DefaultSequence', '', '1', '10', '', '', 'Int64', 'False'")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.SequenceHiLo);
+                .Annotation("ProductVersion", "7.0.0-beta8-15964")
+                .Annotation("SqlServer:HiLoSequenceName", "EntityFrameworkHiLoSequence")
+                .Annotation("SqlServer:Sequence:.EntityFrameworkHiLoSequence", "'EntityFrameworkHiLoSequence', '', '1', '10', '', '', 'Int64', 'False'")
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
@@ -29,7 +27,7 @@ namespace Bank.Repository.Migrations
 
                     b.Property<long>("CustomerId");
 
-                    b.Key("BankTransactionId");
+                    b.HasKey("BankTransactionId");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customer.BankCustomer", b =>
@@ -38,9 +36,11 @@ namespace Bank.Repository.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CustomerType")
-                        .Required();
+                        .IsRequired();
 
-                    b.Key("CustomerId");
+                    b.Property<string>("RegistrationNumber");
+
+                    b.HasKey("CustomerId");
 
                     b.Annotation("Relational:DiscriminatorProperty", "CustomerType");
 
@@ -69,8 +69,8 @@ namespace Bank.Repository.Migrations
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
-                    b.Reference("Bank.Domain.Models.Customer.BankCustomer")
-                        .InverseCollection()
+                    b.HasOne("Bank.Domain.Models.Customer.BankCustomer")
+                        .WithMany()
                         .ForeignKey("CustomerId");
                 });
         }

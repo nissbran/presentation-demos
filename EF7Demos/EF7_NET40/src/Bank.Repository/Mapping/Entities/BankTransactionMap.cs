@@ -11,14 +11,14 @@
         {
             modelBuilder
                 .Entity<BankTransaction>()
-                .Key(customer => customer.BankTransactionId);
+                .HasKey(customer => customer.BankTransactionId);
             
             modelBuilder.Entity<BankTransaction>().Property<long>("CustomerId");
 
             modelBuilder
                 .Entity<BankTransaction>()
-                .Reference(transaction => transaction.Customer)
-                .InverseCollection()
+                .HasOne(transaction => transaction.Customer)
+                .WithMany()
                 .ForeignKey("CustomerId")
                 .Required();
         }

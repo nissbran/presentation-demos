@@ -4,26 +4,20 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Bank.Repository.Context;
-using Microsoft.Data.Entity.SqlServer.Metadata;
 
 namespace Bank.Repository.Migrations
 {
     [DbContext(typeof(BankContext))]
+    [Migration("20151017224439_Initial")]
     partial class Initial
     {
-        public override string Id
-        {
-            get { return "20151016083549_Initial"; }
-        }
-
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta7-15540")
-                .Annotation("SqlServer:HiLoSequenceName", "DefaultSequence")
-                .Annotation("SqlServer:HiLoSequencePoolSize", 5)
-                .Annotation("SqlServer:Sequence:.DefaultSequence", "'DefaultSequence', '', '1', '10', '', '', 'Int64', 'False'")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.SequenceHiLo);
+                .Annotation("ProductVersion", "7.0.0-beta8-15964")
+                .Annotation("SqlServer:HiLoSequenceName", "EntityFrameworkHiLoSequence")
+                .Annotation("SqlServer:Sequence:.EntityFrameworkHiLoSequence", "'EntityFrameworkHiLoSequence', '', '1', '10', '', '', 'Int64', 'False'")
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
@@ -34,48 +28,47 @@ namespace Bank.Repository.Migrations
 
                     b.Property<long>("CustomerId");
 
-                    b.Key("BankTransactionId");
+                    b.HasKey("BankTransactionId");
                 });
 
-            modelBuilder.Entity("Bank.Domain.Models.Customer.BankCustomer", b =>
+            modelBuilder.Entity("Bank.Domain.Models.Customers.BankCustomer", b =>
                 {
                     b.Property<long>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CustomerType")
-                        .Required();
+                    b.Property<int>("CustomerType");
 
-                    b.Key("CustomerId");
+                    b.HasKey("CustomerId");
 
                     b.Annotation("Relational:DiscriminatorProperty", "CustomerType");
 
                     b.Annotation("Relational:DiscriminatorValue", "BankCustomer");
                 });
 
-            modelBuilder.Entity("Bank.Domain.Models.Customer.Company", b =>
+            modelBuilder.Entity("Bank.Domain.Models.Customers.Company", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
+                    b.BaseType("Bank.Domain.Models.Customers.BankCustomer");
 
                     b.Property<string>("Name");
 
-                    b.Annotation("Relational:DiscriminatorValue", "Company");
+                    b.Annotation("Relational:DiscriminatorValue", 2);
                 });
 
-            modelBuilder.Entity("Bank.Domain.Models.Customer.PrivatePerson", b =>
+            modelBuilder.Entity("Bank.Domain.Models.Customers.PrivatePerson", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
+                    b.BaseType("Bank.Domain.Models.Customers.BankCustomer");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Annotation("Relational:DiscriminatorValue", "PrivatePerson");
+                    b.Annotation("Relational:DiscriminatorValue", 1);
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
-                    b.Reference("Bank.Domain.Models.Customer.BankCustomer")
-                        .InverseCollection()
+                    b.HasOne("Bank.Domain.Models.Customers.BankCustomer")
+                        .WithMany()
                         .ForeignKey("CustomerId");
                 });
         }

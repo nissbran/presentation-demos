@@ -2,6 +2,7 @@
 {
     using Domain.Models.Customer;
     using Interfaces;
+    using Infrastructure;
     using Microsoft.Data.Entity;
 
     public class CustomerMap : IEntityMap
@@ -10,10 +11,11 @@
         {
             modelBuilder
                 .Entity<BankCustomer>()
-                .Key(customer => customer.CustomerId);
+                .HasKey(customer => customer.CustomerId);
 
-            modelBuilder.Entity<BankCustomer>().Property<string>("RegistrationNumber");
             modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
+            modelBuilder.Entity<BankCustomer>().Property<string>("RegistrationNumber");
+           // modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
 
             modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
             modelBuilder.Entity<Company>().BaseType<BankCustomer>();
