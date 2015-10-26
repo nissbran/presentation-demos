@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
+using Microsoft.Data.Entity.Metadata;
 
 namespace Bank.Repository.Migrations
 {
@@ -8,14 +9,12 @@ namespace Bank.Repository.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "EntityFrameworkHiLoSequence",
-                incrementBy: 10);
             migrationBuilder.CreateTable(
                 name: "BankCustomer",
                 columns: table => new
                 {
-                    CustomerId = table.Column<long>(nullable: false),
+                    CustomerId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CustomerType = table.Column<string>(nullable: false),
                     RegistrationNumber = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
@@ -47,7 +46,6 @@ namespace Bank.Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropSequence("EntityFrameworkHiLoSequence");
             migrationBuilder.DropTable("BankTransaction");
             migrationBuilder.DropTable("BankCustomer");
         }

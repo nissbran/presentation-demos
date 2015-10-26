@@ -20,7 +20,8 @@ namespace Bank.Repository.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseSqlServerSequenceHiLo();
+            //modelBuilder.UseSqlServerSequenceHiLo();
+            modelBuilder.UseSqlServerIdentityColumns();
 
             EntityMappingConfiguration.EntityMappings.ForEach(map => map.ConfigureModel(modelBuilder));
         }

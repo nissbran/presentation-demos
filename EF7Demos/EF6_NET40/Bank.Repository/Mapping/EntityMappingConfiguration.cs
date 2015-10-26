@@ -1,6 +1,5 @@
 ﻿namespace Bank.Repository.Mapping
 {
-    using System;
     using Entities;
     using System.Collections.Generic;
     using Interfaces;

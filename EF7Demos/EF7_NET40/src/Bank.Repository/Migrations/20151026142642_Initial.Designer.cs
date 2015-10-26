@@ -8,16 +8,14 @@ using Bank.Repository.Context;
 namespace Bank.Repository.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20151017225427_Initial")]
+    [Migration("20151026142642_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:HiLoSequenceName", "EntityFrameworkHiLoSequence")
-                .Annotation("SqlServer:Sequence:.EntityFrameworkHiLoSequence", "'EntityFrameworkHiLoSequence', '', '1', '10', '', '', 'Int64', 'False'")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {

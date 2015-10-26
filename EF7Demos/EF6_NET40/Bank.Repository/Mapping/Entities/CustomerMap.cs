@@ -13,11 +13,13 @@
                 .Entity<BankCustomer>()
                 .HasKey(customer => customer.CustomerId);
 
-            modelBuilder.ComplexType<RegistrationNumber>();
+            modelBuilder.ComplexType<RegistrationNumber>()
+                        .Property(number => number.Value)
+                        .HasColumnName("RegistrationNumber");
 
             modelBuilder.Entity<BankCustomer>()
-                .Map<PrivatePerson>(m => m.Requires("CustomerType").HasValue("PrivatePerson"))
-                .Map<Company>(m => m.Requires("CustomerType").HasValue("Company"));
+                        .Map<PrivatePerson>(m => m.Requires("CustomerType").HasValue("PrivatePerson"))
+                        .Map<Company>(m => m.Requires("CustomerType").HasValue("Company"));
         }
     }
 }

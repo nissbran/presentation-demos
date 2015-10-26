@@ -14,9 +14,7 @@ namespace Bank.Repository.Migrations
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:HiLoSequenceName", "EntityFrameworkHiLoSequence")
-                .Annotation("SqlServer:Sequence:.EntityFrameworkHiLoSequence", "'EntityFrameworkHiLoSequence', '', '1', '10', '', '', 'Int64', 'False'")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {

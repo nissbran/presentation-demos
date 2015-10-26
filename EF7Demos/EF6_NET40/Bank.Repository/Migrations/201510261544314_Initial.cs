@@ -1,6 +1,5 @@
 namespace Bank.Repository.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class Initial : DbMigration
@@ -12,7 +11,7 @@ namespace Bank.Repository.Migrations
                 c => new
                     {
                         CustomerId = c.Long(nullable: false, identity: true),
-                        RegistrationNumber_Value = c.String(),
+                        RegistrationNumber = c.String(),
                         Name = c.String(),
                         FirstName = c.String(),
                         LastName = c.String(),
@@ -24,7 +23,7 @@ namespace Bank.Repository.Migrations
                 "dbo.BankTransactions",
                 c => new
                     {
-                        BankTransactionId = c.Guid(nullable: false),
+                        BankTransactionId = c.Guid(nullable: false, identity: true, defaultValueSql: "newsequentialid()"),
                         CustomerId = c.Long(nullable: false),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })

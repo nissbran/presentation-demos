@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA1380BD-3DE8-4DCE-AC65-A91A4ED93A67}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{64E8736B-988D-4154-9AB3-2B1C0FB129CC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bank.Repository</RootNamespace>
-    <AssemblyName>Bank.Repository</AssemblyName>
+    <RootNamespace>EF6_TestConsoleApplication</RootNamespace>
+    <AssemblyName>EF6_TestConsoleApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,6 +41,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture, Version=3.36.9.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.3.36.9\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,17 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\BankContext.cs" />
-    <Compile Include="Mapping\Entities\BankTransactionMap.cs" />
-    <Compile Include="Mapping\Entities\CustomerMap.cs" />
-    <Compile Include="Mapping\EntityMappingConfiguration.cs" />
-    <Compile Include="Mapping\Interfaces\IEntityMap.cs" />
-    <Compile Include="Migrations\201510261544314_Initial.cs" />
-    <Compile Include="Migrations\201510261544314_Initial.Designer.cs">
-      <DependentUpon>201510261544314_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bank.Domain\Bank.Domain.csproj">
@@ -70,15 +72,10 @@
       <Project>{dae4b3d2-520c-49de-9e7b-25f4289a6193}</Project>
       <Name>Bank.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510261544314_Initial.resx">
-      <DependentUpon>201510261544314_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Bank.Repository\Bank.Repository.csproj">
+      <Project>{aa1380bd-3de8-4dce-ac65-a91a4ed93a67}</Project>
+      <Name>Bank.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

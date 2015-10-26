@@ -1,5 +1,6 @@
 ﻿namespace Bank.Repository.Mapping.Entities
 {
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using Domain.Models;
     using Interfaces;
@@ -10,12 +11,17 @@
         {
             modelBuilder
                 .Entity<BankTransaction>()
-                .HasKey(customer => customer.BankTransactionId);
+                .Property(transaction => transaction.BankTransactionId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder
+                .Entity<BankTransaction>()
+                .HasKey(transaction => transaction.BankTransactionId);
 
             modelBuilder.Entity<BankTransaction>()
                 .HasRequired(t => t.Customer)
                 .WithMany()
-                .HasForeignKey(customer => customer.CustomerId);
+                .HasForeignKey(transaction => transaction.CustomerId);
         }
     }
 }

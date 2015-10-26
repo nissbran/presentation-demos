@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Infrastructure", "Bank
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Repository", "Bank.Repository\Bank.Repository.csproj", "{AA1380BD-3DE8-4DCE-AC65-A91A4ED93A67}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F7381A67-8C2E-4552-989D-CB85443FA514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF6_TestConsoleApplication", "EF6_TestConsoleApplication\EF6_TestConsoleApplication.csproj", "{64E8736B-988D-4154-9AB3-2B1C0FB129CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{AA1380BD-3DE8-4DCE-AC65-A91A4ED93A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA1380BD-3DE8-4DCE-AC65-A91A4ED93A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA1380BD-3DE8-4DCE-AC65-A91A4ED93A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64E8736B-988D-4154-9AB3-2B1C0FB129CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E8736B-988D-4154-9AB3-2B1C0FB129CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E8736B-988D-4154-9AB3-2B1C0FB129CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E8736B-988D-4154-9AB3-2B1C0FB129CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64E8736B-988D-4154-9AB3-2B1C0FB129CC} = {F7381A67-8C2E-4552-989D-CB85443FA514}
 	EndGlobalSection
 EndGlobal

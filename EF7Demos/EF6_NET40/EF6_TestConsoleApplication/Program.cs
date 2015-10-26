@@ -1,4 +1,4 @@
-﻿namespace EF7TestConsoleApp
+﻿namespace EF6_TestConsoleApplication
 {
     using System;
     using System.Diagnostics;
@@ -18,8 +18,11 @@
             var fixture = new Fixture();
             using (var context = new BankContext())
             {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                if (!context.Database.CreateIfNotExists())
+                {
+                    context.Database.Delete();
+                    context.Database.CreateIfNotExists();
+                }
             }
 
             var privatePerson = fixture.Create<PrivatePerson>();
@@ -38,8 +41,7 @@
                     var customer = fixture.Create<PrivatePerson>();
 
                     context.Customers.Add(customer);
-                    //context.Customers.Add(fixture.Create<Company>());
-                    context.Customers.Add(fixture.Create<PrivatePerson>());
+                    context.Customers.Add(fixture.Create<Company>());
                     context.Customers.Add(fixture.Create<PrivatePerson>());
 
                     context.SaveChanges();
@@ -47,6 +49,7 @@
 
                 using (var context = new BankContext())
                 {
+                    context.Customers.Attach(privatePerson);
                     for (int y = 0; y < 100; y++)
                     {
                         context.Transactions.Add(fixture.Create<BankTransaction>());
@@ -54,6 +57,7 @@
                         context.Transactions.Add(fixture.Create<BankTransaction>());
                         context.Transactions.Add(fixture.Create<BankTransaction>());
                     }
+
                     context.SaveChanges();
                 }
             }
