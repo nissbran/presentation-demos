@@ -15,11 +15,11 @@
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server = (localdb)\MSSQLLocalDB; Initial Catalog = EF7Context; Integrated Security = true;";
+            var connection = @"Filename=testdb.db";
 
             services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<BankContext>(options => options.UseSqlServer(connection));
+                .AddSqlite()
+                .AddDbContext<BankContext>(options => options.UseSqlite(connection));
         }
     }
 }

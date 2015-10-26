@@ -18,14 +18,18 @@
                 context.Database.EnsureCreated();
             }
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 using (var context = new BankContext())
                 {
-                    var customer = new PrivatePerson("Nisse", "Nissesson");
-                    context.Customers.Add(customer);
+                    context.Customers.Add(new PrivatePerson("Nisse", "Nissesson"));
+
+                    context.SaveChanges();
+                }
+
+                using (var context = new BankContext())
+                {
                     context.Customers.Add(new Company("MyCompany"));
-                    context.Customers.Add(new PrivatePerson("Test","Testsson"));
 
                     context.SaveChanges();
                 }

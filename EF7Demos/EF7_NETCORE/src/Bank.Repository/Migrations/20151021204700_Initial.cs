@@ -8,14 +8,12 @@ namespace Bank.Repository.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "EntityFrameworkHiLoSequence",
-                incrementBy: 10);
             migrationBuilder.CreateTable(
                 name: "BankCustomer",
                 columns: table => new
                 {
-                    CustomerId = table.Column<long>(nullable: false),
+                    CustomerId = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     CustomerType = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
@@ -46,7 +44,6 @@ namespace Bank.Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropSequence("EntityFrameworkHiLoSequence");
             migrationBuilder.DropTable("BankTransaction");
             migrationBuilder.DropTable("BankCustomer");
         }

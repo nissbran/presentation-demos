@@ -12,11 +12,11 @@
   },
 
   "commands": {
-    "EF7_TestConsoleApp": "EF7_TestConsoleApp"
+    "cmd": "EF7_TestConsoleApp"
   },
 
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {},
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",

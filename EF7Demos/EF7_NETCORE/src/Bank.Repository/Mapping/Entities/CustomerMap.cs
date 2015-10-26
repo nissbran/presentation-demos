@@ -12,10 +12,6 @@
                 .Entity<BankCustomer>()
                 .HasKey(customer => customer.CustomerId);
 
-            //modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
-           // modelBuilder.Entity<BankCustomer>().Property<string>("RegistrationNumber");
-           // modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
-
             modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
             modelBuilder.Entity<Company>().BaseType<BankCustomer>();
 
