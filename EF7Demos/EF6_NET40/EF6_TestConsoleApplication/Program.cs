@@ -12,8 +12,6 @@
     {
         static void Main(string[] args)
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
 
             var fixture = new Fixture();
             using (var context = new BankContext())
@@ -24,6 +22,9 @@
                     context.Database.CreateIfNotExists();
                 }
             }
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             var privatePerson = fixture.Create<PrivatePerson>();
             using (var context = new BankContext())

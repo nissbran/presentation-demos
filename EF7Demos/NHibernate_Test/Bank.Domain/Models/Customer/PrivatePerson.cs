@@ -1,12 +1,15 @@
 ﻿namespace Bank.Domain.Models.Customer
 {
+    using Infrastructure;
+
     public class PrivatePerson : BankCustomer
     {
-        public string FirstName { get; private set; }
+        public virtual string FirstName { get; protected set; }
 
-        public string LastName { get; private set; }
+        public virtual string LastName { get; protected set; }
 
-        public PrivatePerson(string firstName, string lastName)
+        public PrivatePerson(string firstName, string lastName, RegistrationNumber registrationNumber)
+            : base(registrationNumber)
         {
             FirstName = firstName;
             LastName = lastName;

@@ -1,16 +1,12 @@
-{
+﻿{
   "version": "1.0.0-*",
   "description": "Bank.Repository Class Library",
-  "authors": [
-    "krist"
-  ],
-  "tags": [
-    ""
-  ],
+  "authors": [ "krist_000" ],
+  "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
   "frameworks": {
-    "dnx451": {},
+    "dnx451": { },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -21,14 +17,8 @@
       }
     }
   },
-  "commands": {
-    "ef": "EntityFramework.Commands"
-  },
   "dependencies": {
     "Bank.Domain": "1.0.0-*",
-    "EntityFramework.Commands": "7.0.0-beta8",
-    "EntityFramework.SQLite": "7.0.0-beta8",
-    "EntityFramework.Sqlite.Design": "7.0.0-beta8",
-    "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8"
+    "EntityFramework.Relational": "7.0.0-beta8"
   }
 }

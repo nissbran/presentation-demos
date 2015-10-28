@@ -5,11 +5,11 @@
 
     public class BankTransaction
     {
-        public Guid BankTransactionId { get; protected set; }
+        public virtual Guid BankTransactionId { get; protected set; }
 
-        public BankCustomer Customer { get; private set; }
+        public virtual BankCustomer Customer { get; protected set; }
 
-        public decimal Amount { get; private set; }
+        public virtual decimal Amount { get; protected set; }
 
         public BankTransaction(BankCustomer customer, decimal amount)
         {

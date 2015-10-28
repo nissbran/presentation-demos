@@ -2,7 +2,7 @@
 {
     public class Company : BankCustomer
     {
-        public string Name { get; private set; }
+        public virtual string Name { get; protected set; }
 
         public Company(string name)
         {

@@ -4,9 +4,9 @@
 
     public abstract class BankCustomer
     {
-        public long CustomerId { get; protected set; }
+        public virtual long CustomerId { get; protected set; }
 
-        public RegistrationNumber RegistrationNumber { get; private set; }
+        public virtual RegistrationNumber RegistrationNumber { get; protected set; }
 
         protected BankCustomer(RegistrationNumber registrationNumber)
         {

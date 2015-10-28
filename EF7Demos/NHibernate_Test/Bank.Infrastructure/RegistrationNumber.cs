@@ -9,6 +9,10 @@
             Value = registrationNumber;
         }
 
+        protected RegistrationNumber()
+        { 
+        }
+
         public static implicit operator string (RegistrationNumber registrationNumber)
         {
             return registrationNumber?.Value;
