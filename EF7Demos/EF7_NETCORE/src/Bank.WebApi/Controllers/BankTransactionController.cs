@@ -18,27 +18,26 @@
             DataContext = dataContext;
         }
 
-        // GET: api/values
         [HttpGet]
         public IEnumerable<BankTransaction> Get()
         {
             return DataContext.Transactions.Include(transaction => transaction.Customer).ToList();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public BankTransaction Get(Guid id)
         {
             return DataContext.Transactions.First(transaction => transaction.BankTransactionId == id);
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]BankTransaction transaction)
         {
+            DataContext.Add(transaction);
+            
+            DataContext.SaveChanges();
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

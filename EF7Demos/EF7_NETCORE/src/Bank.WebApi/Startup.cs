@@ -1,5 +1,7 @@
 ﻿namespace Bank.WebApi
 {
+    using Bank.Domain.Models;
+    using Bank.Domain.Models.Customers;
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.Data.Entity;
@@ -12,6 +14,8 @@
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
+
+        public bool _useSqlite = false;
 
         public Startup(IApplicationEnvironment applicationEnvironment)
         {
@@ -28,13 +32,26 @@
         {
             services.AddMvc();
 
-            services.AddEntityFramework()
-                    .AddSqlServer()
-                    .AddDbContext<BankContext>(builder => builder.UseSqlServer(Configuration["Data:ConnectionString"]));
+            if (bool.Parse(Configuration["Data:UseSqlite"]))
+            {
+                services.AddEntityFramework()
+                        .AddSqlite()
+                        .AddDbContext<BankContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
+            }
+            else
+            {
+                services.AddEntityFramework()
+                        .AddSqlServer()
+                        .AddDbContext<BankContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
+            }
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
+            BankContext context)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
@@ -48,6 +65,15 @@
 
             // Add MVC to the request pipeline.
             app.UseMvc();
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            var customer = new PrivatePerson("Nisse", "Nisse");
+            context.Customers.Add(customer);
+            context.Transactions.Add(new BankTransaction(customer, 44));
+
+            context.SaveChanges();
         }
     }
 }

@@ -1,5 +1,11 @@
 ﻿{
   "Data": {
-    "ConnectionString": "Server=.;Database=EF7CoreContext; Integrated Security = True;"
+    "UseSqlite": true,
+    "Sqlite": {
+      "Filename": "webapi.db"
+    },
+    "SqlServer": {
+      "ConnectionString": "Server=.;Database=EF7CoreContext; Integrated Security = True;"
+    }
   }
 }
