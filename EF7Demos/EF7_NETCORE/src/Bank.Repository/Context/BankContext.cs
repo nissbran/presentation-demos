@@ -1,18 +1,19 @@
-﻿namespace Bank.Repository.SQLite.Context
+﻿namespace Bank.Repository.Context
 {
     using Domain.Models;
     using Domain.Models.Customers;
     using Mapping;
     using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.Infrastructure;
 
     public class BankContext : DbContext
     {
         public DbSet<BankCustomer> Customers { get; set; }
         public DbSet<BankTransaction> Transactions { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public BankContext(DbContextOptions options)
+            : base(options)
         {
-            optionsBuilder.UseSqlite(@"Filename=testdb.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

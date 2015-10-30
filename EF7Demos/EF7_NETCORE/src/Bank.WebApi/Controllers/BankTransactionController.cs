@@ -6,7 +6,7 @@
     using Domain.Models;
     using Microsoft.AspNet.Mvc;
     using Microsoft.Data.Entity;
-    using Repository.SQLServer.Context;
+    using Repository.Context;
 
     [Route("api/[controller]")]
     public class BankTransactionsController : Controller

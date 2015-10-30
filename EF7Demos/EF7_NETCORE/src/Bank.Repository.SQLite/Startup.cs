@@ -1,8 +1,9 @@
 ﻿namespace Bank.Repository.SQLite
 {
+    using Context;
     using Microsoft.AspNet.Builder;
+    using Microsoft.Data.Entity;
     using Microsoft.Framework.DependencyInjection;
-    using SQLite.Context;
 
     public class Startup
     {
@@ -15,7 +16,7 @@
         {
             services.AddEntityFramework()
                 .AddSqlite()
-                .AddDbContext<BankContext>();
+                .AddDbContext<BankContext>(builder => builder.UseSqlite(@"Filename=testdb.db"));
         }
     }
 }

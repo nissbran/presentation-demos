@@ -3,10 +3,11 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.SQLServer.Context;
 
 namespace Bank.Repository.SQLServer.Migrations
 {
+    using Context;
+
     [DbContext(typeof(BankContext))]
     [Migration("20151027152942_Initial")]
     partial class Initial

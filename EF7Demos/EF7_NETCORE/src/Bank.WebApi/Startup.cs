@@ -9,7 +9,7 @@
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
     using Microsoft.Framework.Logging;
-    using Repository.SQLServer.Context;
+    using Repository.Context;
 
     public class Startup
     {
