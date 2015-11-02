@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customers;
-    using Bank.Repository.Context;
+    using Bank.Repository.SQLServer.Context;
     using Microsoft.Data.Entity;
 
     public class Program

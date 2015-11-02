@@ -7,7 +7,6 @@
   "licenseUrl": "",
 
   "dependencies": {
-    "Bank.Domain": "1.0.0-*",
     "Bank.Repository.SQLite": "1.0.0-*"
   },
 

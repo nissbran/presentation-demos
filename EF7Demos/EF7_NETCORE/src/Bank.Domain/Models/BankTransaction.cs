@@ -11,10 +11,17 @@
 
         public decimal Amount { get; private set; }
 
+        public DateTimeOffset CreatedOn { get; private set; }
+
+        public DateTimeOffset? DateForAccounting { get; set; }
+
+        public bool AccountingIsDone { get; set; }
+
         public BankTransaction(BankCustomer customer, decimal amount)
         {
             Customer = customer;
             Amount = amount;
+            CreatedOn = DateTime.Now;
         }
 
         protected BankTransaction() { }

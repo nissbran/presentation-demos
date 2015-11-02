@@ -15,7 +15,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString =
-                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = EF7CoreContext; Integrated Security = True;";
+                @"Data Source = .; Initial Catalog = EF7CoreContext2; Integrated Security = True;";
 
             services.AddEntityFramework()
                 .AddSqlServer()

@@ -3,11 +3,10 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
+using Bank.Repository.SQLServer.Context;
 
 namespace Bank.Repository.SQLServer.Migrations
 {
-    using Context;
-
     [DbContext(typeof(BankContext))]
     partial class BankContextModelSnapshot : ModelSnapshot
     {
@@ -22,9 +21,15 @@ namespace Bank.Repository.SQLServer.Migrations
                     b.Property<Guid>("BankTransactionId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("AccountingIsDone");
+
                     b.Property<decimal>("Amount");
 
+                    b.Property<DateTimeOffset>("CreatedOn");
+
                     b.Property<long>("CustomerId");
+
+                    b.Property<DateTimeOffset?>("DateForAccounting");
 
                     b.HasKey("BankTransactionId");
                 });

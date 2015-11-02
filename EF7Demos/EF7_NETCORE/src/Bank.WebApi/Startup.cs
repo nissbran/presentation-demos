@@ -9,14 +9,12 @@
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
     using Microsoft.Framework.Logging;
-    using Repository.Context;
+    using Repository.SQLite.Context;
 
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
-
-        public bool _useSqlite = false;
-
+        
         public Startup(IApplicationEnvironment applicationEnvironment)
         {
             var configuration = new ConfigurationBuilder()

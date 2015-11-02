@@ -1,10 +1,9 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Metadata;
-
-namespace Bank.Repository.SQLServer.Migrations
+namespace Bank.Repository.SQLServer.Migrations.Initial
 {
+    using System;
+    using Microsoft.Data.Entity.Metadata;
+    using Microsoft.Data.Entity.Migrations;
+
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +29,7 @@ namespace Bank.Repository.SQLServer.Migrations
                 {
                     BankTransactionId = table.Column<Guid>(nullable: false),
                     Amount = table.Column<decimal>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CustomerId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>

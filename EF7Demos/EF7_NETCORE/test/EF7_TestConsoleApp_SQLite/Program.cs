@@ -1,16 +1,21 @@
-﻿namespace EF7_TestConsoleApp
+﻿namespace EF7_TestConsoleApp.SQLite
 {
     using System;
     using System.Diagnostics;
-    using Bank.Domain.Models.Customers;
     using System.Linq;
     using Bank.Repository.SQLite.Context;
+    using Bank.Domain.Models;
+    using Bank.Domain.Models.Customers;
+    using Microsoft.Data.Entity;
 
     public class Program
     {
         public void Main(string[] args)
         {
-            using (var context = new BankContext())
+            var builder = new DbContextOptionsBuilder();
+            builder.UseSqlite("Filename=testdb.db");
+
+            using (var context = new BankContext(builder.Options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -21,7 +26,7 @@
 
             for (int i = 0; i < 100; i++)
             {
-                using (var context = new BankContext())
+                using (var context = new BankContext(builder.Options))
                 {
                     context.Customers.Add(new PrivatePerson("Nisse", "Nissesson"));
 
@@ -29,7 +34,7 @@
                 }
             }
 
-            using (var context = new BankContext())
+            using (var context = new BankContext(builder.Options))
             {
                 var customers = context.Customers.ToList();
 

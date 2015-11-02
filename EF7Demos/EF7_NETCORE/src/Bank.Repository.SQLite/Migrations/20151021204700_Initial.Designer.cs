@@ -1,10 +1,10 @@
 namespace Bank.Repository.SQLite.Migrations
 {
     using System;
+    using Context;
     using Microsoft.Data.Entity;
     using Microsoft.Data.Entity.Infrastructure;
     using Microsoft.Data.Entity.Migrations;
-    using SQLite.Context;
 
     [DbContext(typeof(BankContext))]
     [Migration("20151021204700_Initial")]

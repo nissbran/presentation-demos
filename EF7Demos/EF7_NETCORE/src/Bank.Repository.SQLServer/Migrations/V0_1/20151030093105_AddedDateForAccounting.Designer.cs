@@ -1,16 +1,15 @@
-using System;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-
-namespace Bank.Repository.SQLServer.Migrations
+namespace Bank.Repository.SQLServer.Migrations.V0_1
 {
+    using System;
     using Context;
+    using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.Infrastructure;
+    using Microsoft.Data.Entity.Metadata;
+    using Microsoft.Data.Entity.Migrations;
 
     [DbContext(typeof(BankContext))]
-    [Migration("20151027152942_Initial")]
-    partial class Initial
+    [Migration("20151030093105_AddedDateForAccounting")]
+    partial class AddedDateForAccounting
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +24,11 @@ namespace Bank.Repository.SQLServer.Migrations
 
                     b.Property<decimal>("Amount");
 
+                    b.Property<DateTimeOffset>("CreatedOn");
+
                     b.Property<long>("CustomerId");
+
+                    b.Property<DateTimeOffset?>("DateForAccounting");
 
                     b.HasKey("BankTransactionId");
                 });
