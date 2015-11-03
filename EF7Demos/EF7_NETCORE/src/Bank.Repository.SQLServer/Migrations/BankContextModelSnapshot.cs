@@ -7,7 +7,7 @@ using Bank.Repository.SQLServer.Context;
 
 namespace Bank.Repository.SQLServer.Migrations
 {
-    [DbContext(typeof(BankContext))]
+    [DbContext(typeof(MigrationContext))]
     partial class BankContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

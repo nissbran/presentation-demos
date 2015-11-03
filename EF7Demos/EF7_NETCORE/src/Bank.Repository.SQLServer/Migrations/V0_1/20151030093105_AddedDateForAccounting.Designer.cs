@@ -7,7 +7,7 @@ namespace Bank.Repository.SQLServer.Migrations.V0_1
     using Microsoft.Data.Entity.Metadata;
     using Microsoft.Data.Entity.Migrations;
 
-    [DbContext(typeof(BankContext))]
+    [DbContext(typeof(MigrationContext))]
     [Migration("20151030093105_AddedDateForAccounting")]
     partial class AddedDateForAccounting
     {

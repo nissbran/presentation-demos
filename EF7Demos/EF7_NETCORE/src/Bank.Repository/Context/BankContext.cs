@@ -1,4 +1,4 @@
-﻿namespace Bank.Repository.SQLServer.Context
+﻿namespace Bank.Repository.Context
 {
     using Domain.Models;
     using Domain.Models.Customers;

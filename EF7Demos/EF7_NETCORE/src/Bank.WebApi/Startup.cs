@@ -2,6 +2,7 @@
 {
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customers;
+    using Bank.Repository.Context;
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.Data.Entity;
@@ -9,7 +10,6 @@
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
     using Microsoft.Framework.Logging;
-    using Repository.SQLite.Context;
 
     public class Startup
     {

@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Bank.Repository.Context;
     using Domain.Models;
     using Microsoft.AspNet.Mvc;
     using Microsoft.Data.Entity;
-    using Repository.SQLite.Context;
 
     [Route("api/[controller]")]
     public class BankTransactionsController : Controller

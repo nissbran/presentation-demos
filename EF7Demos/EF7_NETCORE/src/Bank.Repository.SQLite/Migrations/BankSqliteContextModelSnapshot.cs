@@ -1,16 +1,16 @@
+using System;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Migrations;
+using Bank.Repository.SQLite.Context;
+
 namespace Bank.Repository.SQLite.Migrations
 {
-    using System;
-    using Context;
-    using Microsoft.Data.Entity;
-    using Microsoft.Data.Entity.Infrastructure;
-    using Microsoft.Data.Entity.Migrations;
-
-    [DbContext(typeof(BankContext))]
-    [Migration("20151021204700_Initial")]
-    partial class Initial
+    [DbContext(typeof(MigrationContext))]
+    partial class BankSqliteContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964");
@@ -20,9 +20,15 @@ namespace Bank.Repository.SQLite.Migrations
                     b.Property<Guid>("BankTransactionId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("AccountingIsDone");
+
                     b.Property<decimal>("Amount");
 
+                    b.Property<DateTimeOffset>("CreatedOn");
+
                     b.Property<long>("CustomerId");
+
+                    b.Property<DateTimeOffset?>("DateForAccounting");
 
                     b.HasKey("BankTransactionId");
                 });
@@ -32,7 +38,10 @@ namespace Bank.Repository.SQLite.Migrations
                     b.Property<long>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CustomerType");
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<string>("CustomerType")
+                        .IsRequired();
 
                     b.HasKey("CustomerId");
 
@@ -47,7 +56,7 @@ namespace Bank.Repository.SQLite.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Annotation("Relational:DiscriminatorValue", 2);
+                    b.Annotation("Relational:DiscriminatorValue", "Company");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customers.PrivatePerson", b =>
@@ -58,7 +67,7 @@ namespace Bank.Repository.SQLite.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Annotation("Relational:DiscriminatorValue", 1);
+                    b.Annotation("Relational:DiscriminatorValue", "PrivatePerson");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>

@@ -7,7 +7,7 @@ namespace Bank.Repository.SQLServer.Migrations.Initial
     using Microsoft.Data.Entity.Metadata;
     using Microsoft.Data.Entity.Migrations;
 
-    [DbContext(typeof(BankContext))]
+    [DbContext(typeof(MigrationContext))]
     [Migration("20151030092611_Initial")]
     partial class Initial
     {

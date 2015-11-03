@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.Entity.Migrations;
+
 namespace Bank.Repository.SQLite.Migrations
 {
-    using System;
-    using Microsoft.Data.Entity.Migrations;
-
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,7 +14,8 @@ namespace Bank.Repository.SQLite.Migrations
                 {
                     CustomerId = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CustomerType = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CustomerType = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true)
@@ -27,8 +29,11 @@ namespace Bank.Repository.SQLite.Migrations
                 columns: table => new
                 {
                     BankTransactionId = table.Column<Guid>(nullable: false),
+                    AccountingIsDone = table.Column<bool>(nullable: false),
                     Amount = table.Column<decimal>(nullable: false),
-                    CustomerId = table.Column<long>(nullable: false)
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CustomerId = table.Column<long>(nullable: false),
+                    DateForAccounting = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
                 {
