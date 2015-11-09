@@ -1,4 +1,6 @@
-﻿namespace Bank.Domain.Models.Customers
+﻿using System;
+
+namespace Bank.Domain.Models.Customers
 {
     public class PrivatePerson : BankCustomer
     {
@@ -10,6 +12,7 @@
         {
             FirstName = firstName;
             LastName = lastName;
+            CreatedOn = DateTime.Now;
         }
 
         protected PrivatePerson() { }

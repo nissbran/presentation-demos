@@ -33,6 +33,18 @@ namespace Bank.Repository.SQLite.Migrations
                     b.HasKey("BankTransactionId");
                 });
 
+            modelBuilder.Entity("Bank.Domain.Models.CreditCheckResult", b =>
+                {
+                    b.Property<Guid>("CreditCheckResultId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("AllowedCreditAmount");
+
+                    b.Property<string>("Institute");
+
+                    b.HasKey("CreditCheckResultId");
+                });
+
             modelBuilder.Entity("Bank.Domain.Models.Customers.BankCustomer", b =>
                 {
                     b.Property<long>("CustomerId")

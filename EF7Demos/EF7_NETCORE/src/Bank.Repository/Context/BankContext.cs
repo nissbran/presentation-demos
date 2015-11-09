@@ -11,6 +11,8 @@
         public DbSet<BankCustomer> Customers { get; set; }
         public DbSet<BankTransaction> Transactions { get; set; }
 
+        public DbSet<CreditCheckResult> CreditCheckResults { get; set; } 
+
         public BankContext(DbContextOptions options)
             : base(options)
         {

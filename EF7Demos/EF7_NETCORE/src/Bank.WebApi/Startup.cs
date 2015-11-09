@@ -1,4 +1,6 @@
-﻿namespace Bank.WebApi
+﻿using System;
+
+namespace Bank.WebApi
 {
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customers;
@@ -18,7 +20,7 @@
         public IConfiguration Configuration { get; set; }
 
         public bool UseSqlite { get; private set; }
-        
+
         public Startup(IApplicationEnvironment applicationEnvironment)
         {
             var configuration = new ConfigurationBuilder()
@@ -35,21 +37,27 @@
             services.AddMvc();
             UseSqlite = bool.Parse(Configuration["Data:UseSqlite"]);
 
-            var entityFrameworkBuilder = services.AddEntityFramework()
-                .AddSqlite();
-                                                 //.AddSqlServer();
+            var efBuilder = services.AddEntityFramework();
+
             if (UseSqlite)
             {
-                entityFrameworkBuilder.AddDbContext<BankContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
+                var sqliteOptions = $"Filename={Configuration["Data:Sqlite:Filename"]}";
+
+                efBuilder
+                    .AddSqlite()
+                    .AddDbContext<BankContext>(builder => builder.UseSqlite(sqliteOptions))
+                    .AddDbContext<SqliteMigrationContext>(builder => builder.UseSqlite(sqliteOptions));
             }
             else
             {
-                entityFrameworkBuilder.AddDbContext<BankContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
+                var sqlServerOptions = Configuration["Data:SqlServer:ConnectionString"];
+
+                efBuilder
+                    .AddSqlServer()
+                    .AddDbContext<BankContext>(builder => builder.UseSqlServer(sqlServerOptions))
+                    .AddDbContext<SqlServerMigrationContext>(builder => builder.UseSqlServer(sqlServerOptions));
             }
 
-            entityFrameworkBuilder
-                .AddDbContext<SqliteMigrationContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
-            //.AddDbContext<SqlServerMigrationContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
         }
 
         // Configure is called after ConfigureServices is called.
@@ -57,8 +65,7 @@
             IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
-            //SqlServerMigrationContext sqlContext,
-            SqliteMigrationContext sqlliteContext)
+            IServiceProvider serviceProvider)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
@@ -73,26 +80,23 @@
             // Add MVC to the request pipeline.
             app.UseMvc();
 
-            if (UseSqlite)
-            {
-                sqlliteContext.Database.EnsureDeleted();
-                sqlliteContext.Database.Migrate();
+            var migrationContext = UseSqlite
+                ? (BankContext)serviceProvider.GetService<SqliteMigrationContext>()
+                : (BankContext)serviceProvider.GetService<SqlServerMigrationContext>();
 
-                var customer = new PrivatePerson("Sqlite Nisse", "Nisse");
-                sqlliteContext.Customers.Add(customer);
-                sqlliteContext.Transactions.Add(new BankTransaction(customer, 33));
-            }
-            else
-            {
-                //sqlContext.Database.EnsureDeleted();
-                //sqlContext.Database.Migrate();
+            ResetAndMigrateDatabase(migrationContext);
+        }
 
-                //var customer = new PrivatePerson("SqlServer Nisse", "Nisse");
-                //sqlContext.Customers.Add(customer);
-                //sqlContext.Transactions.Add(new BankTransaction(customer, 44));
+        private void ResetAndMigrateDatabase(BankContext bankContext)
+        {
+            bankContext.Database.EnsureDeleted();
+            bankContext.Database.Migrate();
 
-                //sqlContext.SaveChanges();
-            }
+            var customer = new PrivatePerson("Sql Nisse", "Nisse");
+            bankContext.Customers.Add(customer);
+            bankContext.Transactions.Add(new BankTransaction(customer, 44));
+
+            bankContext.SaveChanges();
         }
     }
 }

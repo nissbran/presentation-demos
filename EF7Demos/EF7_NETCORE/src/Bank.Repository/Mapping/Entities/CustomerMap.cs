@@ -12,10 +12,11 @@
                 .Entity<BankCustomer>()
                 .HasKey(customer => customer.CustomerId);
 
+            modelBuilder.Entity<BankCustomer>().Discriminator("CustomerType", typeof(string));
+
             modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
             modelBuilder.Entity<Company>().BaseType<BankCustomer>();
 
-            modelBuilder.Entity<BankCustomer>().Discriminator("CustomerType", typeof (string));
             //modelBuilder.Entity<BankCustomer>().Discriminator("CustomerType", typeof(int))
             //    .HasValue(typeof(PrivatePerson), 1)
             //    .HasValue(typeof(Company), 2);

@@ -10,7 +10,8 @@
         public static readonly List<IEntityMap> EntityMappings = new List<IEntityMap>
         {
             new CustomerMap(),
-            new BankTransactionMap()
+            new BankTransactionMap(),
+            new CreditCheckResultMap()
         };
     }
 }

@@ -3,18 +3,18 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.SQLServer.Context;
+using Bank.Repository.SQLite.Context;
 
-namespace Bank.Repository.SQLServer.Migrations
+namespace Bank.Repository.SQLite.Migrations
 {
-    [DbContext(typeof(SqlServerMigrationContext))]
-    partial class BankContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SqliteMigrationContext))]
+    [Migration("20151109224352_AddedCreditCheckResult")]
+    partial class AddedCreditCheckResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .Annotation("ProductVersion", "7.0.0-beta8-15964");
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {

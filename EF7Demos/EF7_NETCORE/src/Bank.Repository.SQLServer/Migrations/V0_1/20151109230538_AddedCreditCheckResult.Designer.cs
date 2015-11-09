@@ -5,12 +5,13 @@ using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Bank.Repository.SQLServer.Context;
 
-namespace Bank.Repository.SQLServer.Migrations
+namespace Bank.Repository.SQLServer.Migrations.V0_1
 {
     [DbContext(typeof(SqlServerMigrationContext))]
-    partial class BankContextModelSnapshot : ModelSnapshot
+    [Migration("20151109230538_AddedCreditCheckResult")]
+    partial class AddedCreditCheckResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
