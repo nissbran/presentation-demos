@@ -10,10 +10,14 @@
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
     using Microsoft.Framework.Logging;
+    using Repository.SQLite.Context;
+    using Repository.SQLServer.Context;
 
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
+
+        public bool UseSqlite { get; private set; }
         
         public Startup(IApplicationEnvironment applicationEnvironment)
         {
@@ -29,19 +33,23 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            UseSqlite = bool.Parse(Configuration["Data:UseSqlite"]);
 
-            if (bool.Parse(Configuration["Data:UseSqlite"]))
+            var entityFrameworkBuilder = services.AddEntityFramework()
+                .AddSqlite();
+                                                 //.AddSqlServer();
+            if (UseSqlite)
             {
-                services.AddEntityFramework()
-                        .AddSqlite()
-                        .AddDbContext<BankContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
+                entityFrameworkBuilder.AddDbContext<BankContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
             }
             else
             {
-                services.AddEntityFramework()
-                        .AddSqlServer()
-                        .AddDbContext<BankContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
+                entityFrameworkBuilder.AddDbContext<BankContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
             }
+
+            entityFrameworkBuilder
+                .AddDbContext<SqliteMigrationContext>(builder => builder.UseSqlite($"Filename={Configuration["Data:Sqlite:Filename"]}"));
+            //.AddDbContext<SqlServerMigrationContext>(builder => builder.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
         }
 
         // Configure is called after ConfigureServices is called.
@@ -49,7 +57,8 @@
             IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
-            BankContext context)
+            //SqlServerMigrationContext sqlContext,
+            SqliteMigrationContext sqlliteContext)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
@@ -64,14 +73,26 @@
             // Add MVC to the request pipeline.
             app.UseMvc();
 
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            if (UseSqlite)
+            {
+                sqlliteContext.Database.EnsureDeleted();
+                sqlliteContext.Database.Migrate();
 
-            var customer = new PrivatePerson("Nisse", "Nisse");
-            context.Customers.Add(customer);
-            context.Transactions.Add(new BankTransaction(customer, 44));
+                var customer = new PrivatePerson("Sqlite Nisse", "Nisse");
+                sqlliteContext.Customers.Add(customer);
+                sqlliteContext.Transactions.Add(new BankTransaction(customer, 33));
+            }
+            else
+            {
+                //sqlContext.Database.EnsureDeleted();
+                //sqlContext.Database.Migrate();
 
-            context.SaveChanges();
+                //var customer = new PrivatePerson("SqlServer Nisse", "Nisse");
+                //sqlContext.Customers.Add(customer);
+                //sqlContext.Transactions.Add(new BankTransaction(customer, 44));
+
+                //sqlContext.SaveChanges();
+            }
         }
     }
 }

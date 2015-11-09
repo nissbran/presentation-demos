@@ -3,9 +3,9 @@
     using Bank.Repository.Context;
     using Microsoft.Data.Entity.Infrastructure;
 
-    public class MigrationContext : BankContext
+    public class SqliteMigrationContext : BankContext
     {
-        public MigrationContext(DbContextOptions options)
+        public SqliteMigrationContext(DbContextOptions options)
             : base(options)
         {
         }

@@ -19,7 +19,7 @@
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<MigrationContext>(builder => builder.UseSqlServer(connectionString));
+                .AddDbContext<SqlServerMigrationContext>(builder => builder.UseSqlServer(connectionString));
         }
     }
 }

@@ -7,7 +7,7 @@ using Bank.Repository.SQLServer.Context;
 
 namespace Bank.Repository.SQLServer.Migrations
 {
-    [DbContext(typeof(MigrationContext))]
+    [DbContext(typeof(SqlServerMigrationContext))]
     partial class BankContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -38,6 +38,8 @@ namespace Bank.Repository.SQLServer.Migrations
                 {
                     b.Property<long>("CustomerId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("CreatedOn");
 
                     b.Property<string>("CustomerType")
                         .IsRequired();

@@ -7,7 +7,7 @@ using Bank.Repository.SQLite.Context;
 
 namespace Bank.Repository.SQLite.Migrations
 {
-    [DbContext(typeof(MigrationContext))]
+    [DbContext(typeof(SqliteMigrationContext))]
     [Migration("20151102220856_Initial")]
     partial class Initial
     {

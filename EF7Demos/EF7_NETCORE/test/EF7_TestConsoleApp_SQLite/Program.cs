@@ -3,9 +3,8 @@
     using System;
     using System.Diagnostics;
     using System.Linq;
-    using Bank.Repository.SQLite.Context;
-    using Bank.Domain.Models;
     using Bank.Domain.Models.Customers;
+    using Bank.Repository.Context;
     using Microsoft.Data.Entity;
 
     public class Program

@@ -7,7 +7,7 @@ using Bank.Repository.SQLite.Context;
 
 namespace Bank.Repository.SQLite.Migrations
 {
-    [DbContext(typeof(MigrationContext))]
+    [DbContext(typeof(SqliteMigrationContext))]
     partial class BankSqliteContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

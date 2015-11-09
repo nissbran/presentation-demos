@@ -3,9 +3,9 @@
     using Bank.Repository.Context;
     using Microsoft.Data.Entity.Infrastructure;
 
-    public class MigrationContext : BankContext
+    public class SqlServerMigrationContext : BankContext
     {
-        public MigrationContext(DbContextOptions options)
+        public SqlServerMigrationContext(DbContextOptions options)
             : base(options)
         {
         }

@@ -1,15 +1,15 @@
+using System;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Migrations;
+using Bank.Repository.SQLServer.Context;
+
 namespace Bank.Repository.SQLServer.Migrations.V0_1
 {
-    using System;
-    using Context;
-    using Microsoft.Data.Entity;
-    using Microsoft.Data.Entity.Infrastructure;
-    using Microsoft.Data.Entity.Metadata;
-    using Microsoft.Data.Entity.Migrations;
-
     [DbContext(typeof(SqlServerMigrationContext))]
-    [Migration("20151030093105_AddedDateForAccounting")]
-    partial class AddedDateForAccounting
+    [Migration("20151106154601_CreatedOnOnCustomer")]
+    partial class CreatedOnOnCustomer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,6 +21,8 @@ namespace Bank.Repository.SQLServer.Migrations.V0_1
                 {
                     b.Property<Guid>("BankTransactionId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("AccountingIsDone");
 
                     b.Property<decimal>("Amount");
 
@@ -37,6 +39,8 @@ namespace Bank.Repository.SQLServer.Migrations.V0_1
                 {
                     b.Property<long>("CustomerId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("CreatedOn");
 
                     b.Property<string>("CustomerType")
                         .IsRequired();

@@ -16,7 +16,7 @@
         {
             services.AddEntityFramework()
                 .AddSqlite()
-                .AddDbContext<MigrationContext>(builder => builder.UseSqlite(@"Filename=testdb.db"));
+                .AddDbContext<SqliteMigrationContext>(builder => builder.UseSqlite(@"Filename=testdb.db"));
         }
     }
 }
