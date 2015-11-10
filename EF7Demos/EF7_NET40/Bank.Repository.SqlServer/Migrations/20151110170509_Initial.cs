@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
 
-namespace Bank.Repository.Migrations
+namespace Bank.Repository.SqlServer.Migrations
 {
     public partial class Initial : Migration
     {

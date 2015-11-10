@@ -3,12 +3,12 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.Context;
+using Bank.Repository.SqlServer.Context;
 
-namespace Bank.Repository.Migrations
+namespace Bank.Repository.SqlServer.Migrations
 {
-    [DbContext(typeof(BankContext))]
-    [Migration("20151027123651_Initial")]
+    [DbContext(typeof(SqlServerMigrationContext))]
+    [Migration("20151110170509_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

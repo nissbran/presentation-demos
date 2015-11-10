@@ -7,6 +7,7 @@
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customer;
     using Bank.Repository.Context;
+    using Bank.Repository.SqlServer.Context;
     using Microsoft.Data.Entity;
     using Ploeh.AutoFixture;
 
@@ -15,13 +16,14 @@
         static void Main(string[] args)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["EFMigrationDb"].ConnectionString;
+            
             var builder = new DbContextOptionsBuilder();
             builder.UseSqlServer(connectionString);
 
-            using (var context = new BankContext(builder.Options))
+            using (var context = new SqlServerMigrationContext(builder.Options))
             {
                 context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
 
             var stopwatch = new Stopwatch();
@@ -64,7 +66,7 @@
                 }
             }
 
-            using (var context = new BankContext())
+            using (var context = new BankContext(builder.Options))
             {
                 var customers = context.Customers.ToList();
 

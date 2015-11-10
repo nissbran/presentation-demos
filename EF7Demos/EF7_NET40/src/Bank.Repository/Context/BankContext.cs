@@ -12,6 +12,11 @@ namespace Bank.Repository.Context
         public DbSet<BankCustomer> Customers { get; set; }
         public DbSet<BankTransaction> Transactions { get; set; }
 
+        public BankContext()
+        {
+            
+        }
+
         public BankContext(DbContextOptions options)
             : base(options)
         {
@@ -20,9 +25,6 @@ namespace Bank.Repository.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseSqlServerSequenceHiLo();
-            //modelBuilder.UseSqlServerIdentityColumns();
-
             EntityMappingConfiguration.EntityMappings.ForEach(map => map.ConfigureModel(modelBuilder));
         }
     }
