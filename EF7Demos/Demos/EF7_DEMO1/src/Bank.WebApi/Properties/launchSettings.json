@@ -1,10 +1,16 @@
-﻿{
+{
   "profiles": {
     "IIS Express": {
-      "commandName" : "IISExpress",
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/banktransactions",
-      "environmentVariables" : {
+      "launchUrl": "api/customer",
+      "environmentVariables": {
+        "ASPNET_ENV": "Development"
+      }
+    },
+    "web": {
+      "commandName": "web",
+      "environmentVariables": {
         "ASPNET_ENV": "Development"
       }
     }
