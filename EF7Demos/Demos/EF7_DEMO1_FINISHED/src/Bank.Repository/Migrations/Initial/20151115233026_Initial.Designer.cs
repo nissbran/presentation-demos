@@ -1,11 +1,11 @@
 using System;
+using Bank.Repository.Context;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.Context;
 
-namespace Bank.Repository.Migrations
+namespace Bank.Repository.Migrations.Initial
 {
     [DbContext(typeof(BankContext))]
     [Migration("20151115233026_Initial")]

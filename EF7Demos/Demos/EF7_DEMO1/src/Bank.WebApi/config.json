@@ -1,11 +1,7 @@
 ﻿{
   "Data": {
-    "UseSqlite": true,
-    "Sqlite": {
-      "Filename": "webapi.db"
-    },
     "SqlServer": {
-      "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=EF7CoreContext; Integrated Security = True;"
+      "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=BankContext; Integrated Security = True;"
     }
   }
 }

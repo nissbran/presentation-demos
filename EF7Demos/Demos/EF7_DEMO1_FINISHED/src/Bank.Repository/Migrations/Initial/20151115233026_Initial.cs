@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
-using Microsoft.Data.Entity.Migrations;
 using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Migrations;
 
-namespace Bank.Repository.Migrations
+namespace Bank.Repository.Migrations.Initial
 {
     public partial class Initial : Migration
     {

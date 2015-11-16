@@ -23,10 +23,10 @@ namespace Bank.WebApi.Controllers
             return _bankContext.Customers.ToList();
         }
 
-        //[HttpGet("{id}")]
-        //public BankCustomer Get(long id)
-        //{
-        //    //return _bankContext.Customers.FirstOrDefault(customer => customer.CustomerId == id);
-        //}
+        [HttpGet("{id}")]
+        public BankCustomer Get(long id)
+        {
+            return _bankContext.Customers.FirstOrDefault(customer => customer.CustomerId == id);
+        }
     }
 }

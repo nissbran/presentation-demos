@@ -1,16 +1,17 @@
 using System;
+using Bank.Repository.Context;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.Context;
 
-namespace Bank.Repository.Migrations
+namespace Bank.Repository.Migrations.Version1
 {
     [DbContext(typeof(BankContext))]
-    partial class BankContextModelSnapshot : ModelSnapshot
+    [Migration("20151116181638_AddedDateForAccounting")]
+    partial class AddedDateForAccounting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .Annotation("ProductVersion", "7.0.0-beta8-15964")
@@ -20,8 +21,6 @@ namespace Bank.Repository.Migrations
                 {
                     b.Property<Guid>("BankTransactionId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("AccountingIsDone");
 
                     b.Property<decimal>("Amount");
 

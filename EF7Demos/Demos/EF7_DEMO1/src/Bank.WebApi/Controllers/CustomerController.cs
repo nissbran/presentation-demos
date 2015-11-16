@@ -1,27 +1,22 @@
 ﻿namespace Bank.WebApi.Controllers
 {
+    using System.Collections.Generic;
     using Microsoft.AspNet.Mvc;
+    using Bank.Domain.Models.Customers;
 
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
-        //private readonly BankContext _bankContext;
+        [HttpGet]
+        public IEnumerable<BankCustomer> Get()
+        {
+            return new List<BankCustomer>();
+        }
 
-        //public CustomerController(BankContext bankContext)
-        //{
-        //    _bankContext = bankContext;
-        //}
-
-        //[HttpGet]
-        //public IEnumerable<BankCustomer> Get()
-        //{
-        //    //return _bankContext.Customers.ToList();
-        //}
-        
-        //[HttpGet("{id}")]
-        //public BankCustomer Get(long id)
-        //{
-        //    //return _bankContext.Customers.FirstOrDefault(customer => customer.CustomerId == id);
-        //}
+        [HttpGet("{id}")]
+        public BankCustomer Get(long id)
+        {
+            return new Company("Test");
+        }
     }
 }

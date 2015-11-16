@@ -13,9 +13,9 @@
 
         public DateTimeOffset CreatedOn { get; private set; }
 
-        //public DateTimeOffset? DateForAccounting { get; set; }
+        public DateTimeOffset? DateForAccounting { get; set; }
 
-        //public bool AccountingIsDone { get; set; }
+        public bool AccountingIsDone { get; set; }
 
         public BankTransaction(BankCustomer customer, decimal amount)
         {

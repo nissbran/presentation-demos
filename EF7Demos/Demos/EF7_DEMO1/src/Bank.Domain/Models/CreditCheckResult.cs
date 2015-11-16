@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Bank.Domain.Models
+﻿namespace Bank.Domain.Models
 {
+    using System;
+
     public class CreditCheckResult
     {
         public Guid CreditCheckResultId { get; protected set; }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Bank.Domain.Models.Customers
+﻿namespace Bank.Domain.Models.Customers
 {
+    using System;
+
     public class Company : BankCustomer
     {
         public string Name { get; private set; }
