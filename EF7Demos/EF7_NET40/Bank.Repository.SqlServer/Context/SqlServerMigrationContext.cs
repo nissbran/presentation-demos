@@ -8,7 +8,7 @@
     {
         public SqlServerMigrationContext()
         {
-            
+
         }
 
         public SqlServerMigrationContext(DbContextOptions options) : base(options)
@@ -17,15 +17,16 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseSqlServerSequenceHiLo();
+            // modelBuilder.ForSqlServerUseSequenceHiLo();
 
             base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=EF7Context;Integrated Security=true;");
+            if (!optionsBuilder.IsConfigured)
+                optionsBuilder.UseSqlServer(
+                    @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=EF7Context;Integrated Security=true;");
         }
     }
 }

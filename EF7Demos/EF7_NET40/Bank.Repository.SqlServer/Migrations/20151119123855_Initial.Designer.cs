@@ -8,16 +8,14 @@ using Bank.Repository.SqlServer.Context;
 namespace Bank.Repository.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerMigrationContext))]
-    [Migration("20151110170509_Initial")]
+    [Migration("20151119123855_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:HiLoSequenceName", "EntityFrameworkHiLoSequence")
-                .Annotation("SqlServer:Sequence:.EntityFrameworkHiLoSequence", "'EntityFrameworkHiLoSequence', '', '1', '10', '', '', 'Int64', 'False'")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
+                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
@@ -43,36 +41,36 @@ namespace Bank.Repository.SqlServer.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.Annotation("Relational:DiscriminatorProperty", "CustomerType");
+                    b.HasAnnotation("Relational:DiscriminatorProperty", "CustomerType");
 
-                    b.Annotation("Relational:DiscriminatorValue", "BankCustomer");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "BankCustomer");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customer.Company", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
+                    b.HasBaseType("Bank.Domain.Models.Customer.BankCustomer");
 
                     b.Property<string>("Name");
 
-                    b.Annotation("Relational:DiscriminatorValue", "Company");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "Company");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customer.PrivatePerson", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customer.BankCustomer");
+                    b.HasBaseType("Bank.Domain.Models.Customer.BankCustomer");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Annotation("Relational:DiscriminatorValue", "PrivatePerson");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "PrivatePerson");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
                     b.HasOne("Bank.Domain.Models.Customer.BankCustomer")
                         .WithMany()
-                        .ForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId");
                 });
         }
     }

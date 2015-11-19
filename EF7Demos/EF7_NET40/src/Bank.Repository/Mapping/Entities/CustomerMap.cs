@@ -12,11 +12,11 @@
             {
                 builder.HasKey(customer => customer.CustomerId);
 
-                builder.Discriminator("CustomerType", typeof(string));
+                builder.HasDiscriminator("CustomerType", typeof(string));
             });
 
-            modelBuilder.Entity<Company>().BaseType<BankCustomer>();
-            modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
+            modelBuilder.Entity<Company>().HasBaseType<BankCustomer>();
+            modelBuilder.Entity<PrivatePerson>().HasBaseType<BankCustomer>();
             
             modelBuilder.Entity<BankCustomer>().Ignore(customer => customer.RegistrationNumber);
             modelBuilder.Entity<BankCustomer>().Property<string>("RegistrationNumber");
