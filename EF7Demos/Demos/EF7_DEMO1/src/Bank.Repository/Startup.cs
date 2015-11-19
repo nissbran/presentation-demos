@@ -1,6 +1,6 @@
 ﻿namespace Bank.Repository
 {
-    using Microsoft.Framework.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class Startup
     {

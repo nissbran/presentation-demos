@@ -1,9 +1,10 @@
 ﻿using Bank.Repository.Context;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.DependencyInjection;
 
 namespace Bank.Repository
 {
+    using Microsoft.Extensions.DependencyInjection;
+
     public class Startup
     {
         private const string MigrationConnectionString =

@@ -24,8 +24,8 @@
             {
                 builder.HasKey(customer => customer.CustomerId);
             });
-            modelBuilder.Entity<Company>().BaseType<BankCustomer>();
-            modelBuilder.Entity<PrivatePerson>().BaseType<BankCustomer>();
+            modelBuilder.Entity<Company>().HasBaseType<BankCustomer>();
+            modelBuilder.Entity<PrivatePerson>().HasBaseType<BankCustomer>();
 
             modelBuilder.Entity<BankTransaction>(builder =>
             {
@@ -34,8 +34,8 @@
                 builder.Property<long>("CustomerId");
                 builder.HasOne(t => t.Customer)
                     .WithMany()
-                    .ForeignKey("CustomerId")
-                    .Required();
+                    .HasForeignKey("CustomerId")
+                    .IsRequired();
 
             });
 

@@ -6,10 +6,10 @@
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.Data.Entity;
-    using Microsoft.Dnx.Runtime;
-    using Microsoft.Framework.Configuration;
-    using Microsoft.Framework.DependencyInjection;
-    using Microsoft.Framework.Logging;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.PlatformAbstractions;
 
     public class Startup
     {
@@ -32,10 +32,7 @@
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<BankContext>(
-                    builder =>
-                        builder.UseSqlServer(
-                            "Server=(localdb)\\MSSQLLocalDB; Database = EF7CoreContext; Integrated Security = True;"));
+                .AddDbContext<BankContext>(b => b.UseSqlServer(Configuration["Data:SqlServer:ConnectionString"]));
         }
 
         // Configure is called after ConfigureServices is called.

@@ -1,9 +1,9 @@
-using System;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
-
 namespace Bank.Repository.Migrations.Initial
 {
+    using System;
+    using Microsoft.Data.Entity.Metadata;
+    using Microsoft.Data.Entity.Migrations;
+
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,8 @@ namespace Bank.Repository.Migrations.Initial
                         name: "FK_BankTransaction_BankCustomer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "BankCustomer",
-                        principalColumn: "CustomerId");
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
