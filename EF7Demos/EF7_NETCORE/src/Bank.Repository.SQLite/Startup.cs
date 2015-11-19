@@ -3,7 +3,7 @@
     using Context;
     using Microsoft.AspNet.Builder;
     using Microsoft.Data.Entity;
-    using Microsoft.Framework.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class Startup
     {

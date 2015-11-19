@@ -1,8 +1,8 @@
-namespace Bank.WebApi.UnitTests.Controllers.Utils
+namespace Bank.WebApi.UnitTests.Utils
 {
-    using Bank.Repository.Context;
     using Microsoft.Data.Entity;
     using Microsoft.Data.Entity.Infrastructure;
+    using Repository.Context;
 
     public static class ContextFactory
     {

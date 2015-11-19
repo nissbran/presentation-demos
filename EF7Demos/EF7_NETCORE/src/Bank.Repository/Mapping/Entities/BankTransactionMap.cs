@@ -18,8 +18,8 @@
                 .Entity<BankTransaction>()
                 .HasOne(transaction => transaction.Customer)
                 .WithMany()
-                .ForeignKey("CustomerId")
-                .Required();
+                .HasForeignKey("CustomerId")
+                .IsRequired();
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Bank.WebApi
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.Data.Entity;
-    using Microsoft.Dnx.Runtime;
-    using Microsoft.Framework.Configuration;
-    using Microsoft.Framework.DependencyInjection;
-    using Microsoft.Framework.Logging;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.PlatformAbstractions;
     using Repository.SQLite.Context;
     using Repository.SQLServer.Context;
 

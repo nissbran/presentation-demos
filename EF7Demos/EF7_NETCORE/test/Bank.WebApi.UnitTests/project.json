@@ -11,8 +11,8 @@
   "licenseUrl": "",
   "dependencies": {
     "Bank.WebApi": "1.0.0-*",
-    "EntityFramework.InMemory": "7.0.0-beta8",
-    "EntityFramework.Relational" :  "7.0.0-beta8",
+    "EntityFramework.InMemory": "7.0.0-rc1-final",
+    "EntityFramework.Relational": "7.0.0-rc1-final",
     "xunit.assert": "2.1.0-*",
     "xunit.extensibility.execution": "2.1.0-*",
     "xunit.runner.dnx": "2.1.0-*"

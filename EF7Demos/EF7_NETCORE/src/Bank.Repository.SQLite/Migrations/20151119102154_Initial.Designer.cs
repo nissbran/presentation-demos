@@ -3,19 +3,18 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using Bank.Repository.SQLServer.Context;
+using Bank.Repository.SQLite.Context;
 
-namespace Bank.Repository.SQLServer.Migrations.V0_1
+namespace Bank.Repository.SQLite.Migrations
 {
-    [DbContext(typeof(SqlServerMigrationContext))]
-    [Migration("20151106154601_CreatedOnOnCustomer")]
-    partial class CreatedOnOnCustomer
+    [DbContext(typeof(SqliteMigrationContext))]
+    [Migration("20151119102154_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
@@ -35,6 +34,18 @@ namespace Bank.Repository.SQLServer.Migrations.V0_1
                     b.HasKey("BankTransactionId");
                 });
 
+            modelBuilder.Entity("Bank.Domain.Models.CreditCheckResult", b =>
+                {
+                    b.Property<Guid>("CreditCheckResultId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("AllowedCreditAmount");
+
+                    b.Property<string>("Institute");
+
+                    b.HasKey("CreditCheckResultId");
+                });
+
             modelBuilder.Entity("Bank.Domain.Models.Customers.BankCustomer", b =>
                 {
                     b.Property<long>("CustomerId")
@@ -47,36 +58,36 @@ namespace Bank.Repository.SQLServer.Migrations.V0_1
 
                     b.HasKey("CustomerId");
 
-                    b.Annotation("Relational:DiscriminatorProperty", "CustomerType");
+                    b.HasAnnotation("Relational:DiscriminatorProperty", "CustomerType");
 
-                    b.Annotation("Relational:DiscriminatorValue", "BankCustomer");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "BankCustomer");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customers.Company", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customers.BankCustomer");
+                    b.HasBaseType("Bank.Domain.Models.Customers.BankCustomer");
 
                     b.Property<string>("Name");
 
-                    b.Annotation("Relational:DiscriminatorValue", "Company");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "Company");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.Customers.PrivatePerson", b =>
                 {
-                    b.BaseType("Bank.Domain.Models.Customers.BankCustomer");
+                    b.HasBaseType("Bank.Domain.Models.Customers.BankCustomer");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
 
-                    b.Annotation("Relational:DiscriminatorValue", "PrivatePerson");
+                    b.HasAnnotation("Relational:DiscriminatorValue", "PrivatePerson");
                 });
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
                 {
                     b.HasOne("Bank.Domain.Models.Customers.BankCustomer")
                         .WithMany()
-                        .ForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId");
                 });
         }
     }

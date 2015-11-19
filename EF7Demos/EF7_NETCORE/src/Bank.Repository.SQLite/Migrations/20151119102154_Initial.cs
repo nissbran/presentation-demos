@@ -1,19 +1,32 @@
-namespace Bank.Repository.SQLServer.Migrations.Initial
-{
-    using System;
-    using Microsoft.Data.Entity.Metadata;
-    using Microsoft.Data.Entity.Migrations;
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.Entity.Migrations;
 
+namespace Bank.Repository.SQLite.Migrations
+{
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CreditCheckResult",
+                columns: table => new
+                {
+                    CreditCheckResultId = table.Column<Guid>(nullable: false),
+                    AllowedCreditAmount = table.Column<decimal>(nullable: false),
+                    Institute = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CreditCheckResult", x => x.CreditCheckResultId);
+                });
+            migrationBuilder.CreateTable(
                 name: "BankCustomer",
                 columns: table => new
                 {
                     CustomerId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CustomerType = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
@@ -28,9 +41,11 @@ namespace Bank.Repository.SQLServer.Migrations.Initial
                 columns: table => new
                 {
                     BankTransactionId = table.Column<Guid>(nullable: false),
+                    AccountingIsDone = table.Column<bool>(nullable: false),
                     Amount = table.Column<decimal>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CustomerId = table.Column<long>(nullable: false)
+                    CustomerId = table.Column<long>(nullable: false),
+                    DateForAccounting = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,13 +54,15 @@ namespace Bank.Repository.SQLServer.Migrations.Initial
                         name: "FK_BankTransaction_BankCustomer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "BankCustomer",
-                        principalColumn: "CustomerId");
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable("BankTransaction");
+            migrationBuilder.DropTable("CreditCheckResult");
             migrationBuilder.DropTable("BankCustomer");
         }
     }

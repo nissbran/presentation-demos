@@ -1,10 +1,10 @@
 namespace Bank.WebApi.UnitTests.Controllers
 {
     using Xunit;
-    using Bank.WebApi.UnitTests.Controllers.Utils;
     using Bank.WebApi.Controllers;
     using Bank.Domain.Models;
     using System.Linq;
+    using Utils;
 
     public class CreditCheckController_Test
     {
