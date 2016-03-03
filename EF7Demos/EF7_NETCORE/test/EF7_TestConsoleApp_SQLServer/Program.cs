@@ -5,6 +5,7 @@
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customers;
     using Bank.Repository.Context;
+    using Bank.Repository.SQLServer.Context;
     using Microsoft.Data.Entity;
 
     public class Program
@@ -15,10 +16,10 @@
             var builder = new DbContextOptionsBuilder();
             builder.UseSqlServer(connectionString);
 
-            using (var context = new BankContext(builder.Options))
+            using (var context = new SqlServerMigrationContext(builder.Options))
             {
                 context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
 
             var stopwatch = new Stopwatch();
@@ -36,10 +37,9 @@
                 {
                     var customer = new PrivatePerson("Nisse", "Nissessons");
 
-                    context.Customers.Add(customer);
-                    //context.Customers.Add(fixture.Create<Company>());
-                    context.Customers.Add(new PrivatePerson("Nisse2", "Mannen"));
-                    context.Customers.Add(new PrivatePerson("Nisse2", "Mannen"));
+                    context.Customers.AddRange(customer,
+                        new PrivatePerson("Nisse2", "Mannen"),
+                        new PrivatePerson("Nisse2", "Mannen"));
 
                     context.SaveChanges();
                 }
@@ -66,6 +66,7 @@
 
             stopwatch.Stop();
             Console.WriteLine("Elapsed: {0}", stopwatch.Elapsed);
+            Console.ReadLine();
 
         }
     }

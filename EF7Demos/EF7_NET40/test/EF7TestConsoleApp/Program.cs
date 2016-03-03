@@ -4,10 +4,10 @@
     using System.Configuration;
     using System.Diagnostics;
     using System.Linq;
+    using System.Threading;
     using Bank.Domain.Models;
     using Bank.Domain.Models.Customer;
     using Bank.Repository.Context;
-    using Bank.Repository.SqlServer.Context;
     using Microsoft.Data.Entity;
     using Ploeh.AutoFixture;
 
@@ -20,16 +20,21 @@
             var builder = new DbContextOptionsBuilder();
             builder.UseSqlServer(connectionString);
 
-            using (var context = new SqlServerMigrationContext(builder.Options))
-            {
-                context.Database.EnsureDeleted();
-                context.Database.Migrate();
-            }
+            //using (var context = new SqlServerMigrationContext(builder.Options))
+            //{
+            //    context.Database.EnsureDeleted();
+            //    context.Database.Migrate();
+            //}
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
             var fixture = new Fixture();
+            fixture.Customize<DateTime>(composer => composer.FromFactory(() =>
+            {
+                var date = DateTime.Now;
+                return new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+            }));
             var privatePerson = fixture.Create<PrivatePerson>();
             using (var context = new BankContext(builder.Options))
             {
@@ -43,27 +48,28 @@
             {
                 using (var context = new BankContext(builder.Options))
                 {
+                    Thread.Sleep(10);
                     var customer = fixture.Create<PrivatePerson>();
 
                     context.Customers.Add(customer);
                     //context.Customers.Add(fixture.Create<Company>());
                     context.Customers.Add(fixture.Create<PrivatePerson>());
-                    context.Customers.Add(fixture.Create<PrivatePerson>());
+                    //context.Customers.Add(fixture.Create<PrivatePerson>());
 
                     context.SaveChanges();
                 }
 
-                using (var context = new BankContext(builder.Options))
-                {
-                    for (int y = 0; y < 100; y++)
-                    {
-                        context.Transactions.Add(fixture.Create<BankTransaction>());
-                        context.Transactions.Add(fixture.Create<BankTransaction>());
-                        context.Transactions.Add(fixture.Create<BankTransaction>());
-                        context.Transactions.Add(fixture.Create<BankTransaction>());
-                    }
-                    context.SaveChanges();
-                }
+                //using (var context = new BankContext(builder.Options))
+                //{
+                //    for (int y = 0; y < 100; y++)
+                //    {
+                //        context.Transactions.Add(fixture.Create<BankTransaction>());
+                //        context.Transactions.Add(fixture.Create<BankTransaction>());
+                //        context.Transactions.Add(fixture.Create<BankTransaction>());
+                //        context.Transactions.Add(fixture.Create<BankTransaction>());
+                //    }
+                //    context.SaveChanges();
+                //}
             }
 
             using (var context = new BankContext(builder.Options))
@@ -119,8 +125,8 @@
             //    var transactions = context.Transactions.ToList();
             //}
 
-            stopwatch.Stop();
-            Console.WriteLine("Elapsed: {0}", stopwatch.Elapsed);
+            //stopwatch.Stop();
+            //Console.WriteLine("Elapsed: {0}", stopwatch.Elapsed);
 
 
             Console.ReadLine();

@@ -8,13 +8,14 @@ using Bank.Repository.SQLServer.Context;
 namespace Bank.Repository.SQLServer.Migrations
 {
     [DbContext(typeof(SqlServerMigrationContext))]
-    [Migration("20151119102246_Initial")]
-    partial class Initial
+    [Migration("20151125095434_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("Relational:Sequence:.Test", "'Test', '', '1', '10', '', '', 'Int64', 'False'")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Bank.Domain.Models.BankTransaction", b =>
@@ -50,7 +51,8 @@ namespace Bank.Repository.SQLServer.Migrations
             modelBuilder.Entity("Bank.Domain.Models.Customers.BankCustomer", b =>
                 {
                     b.Property<long>("CustomerId")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Relational:GeneratedValueSql", "next value for Test");
 
                     b.Property<DateTimeOffset>("CreatedOn");
 

@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Metadata;
 
 namespace Bank.Repository.SQLServer.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateSequence(
+                name: "Test",
+                incrementBy: 10);
             migrationBuilder.CreateTable(
                 name: "CreditCheckResult",
                 columns: table => new
@@ -25,8 +27,7 @@ namespace Bank.Repository.SQLServer.Migrations
                 name: "BankCustomer",
                 columns: table => new
                 {
-                    CustomerId = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CustomerId = table.Column<long>(nullable: false, defaultValueSql: "next value for Test"),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CustomerType = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
@@ -62,6 +63,7 @@ namespace Bank.Repository.SQLServer.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropSequence("Test");
             migrationBuilder.DropTable("BankTransaction");
             migrationBuilder.DropTable("CreditCheckResult");
             migrationBuilder.DropTable("BankCustomer");
