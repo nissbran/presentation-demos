@@ -1,0 +1,17 @@
+﻿{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "EventStore.Client": "3.6.3",
+    "AutoFixture": "3.47.8",
+    "Newtonsoft.Json": "8.0.3",
+    "EventDomain": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "net46": {}
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.6": {
+      "EventStore.Client/3.6.3": {
+        "type": "package",
+        "compile": {
+          "lib/net40/EventStore.ClientAPI.dll": {}
+        },
+        "runtime": {
+          "lib/net40/EventStore.ClientAPI.dll": {}
+        }
+      },
+      "EventDomain/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6",
+        "compile": {
+          "net46/EventDomain.dll": {}
+        },
+        "runtime": {
+          "net46/EventDomain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EventStore.Client/3.6.3": {
+      "sha512": "09F/DHhFnuRAYadhfJqokbJeyNbFHTAKMrPkfI/KAb4fd4bUY8Dvq6G9n1VVhzp8JtYHnqK+91+AdBmYnKQt3A==",
+      "type": "package",
+      "files": [
+        "EventStore.Client.3.6.3.nupkg.sha512",
+        "EventStore.Client.nuspec",
+        "lib/net40/EventStore.ClientAPI.dll",
+        "lib/net40/EventStore.ClientAPI.xml"
+      ]
+    },
+    "EventDomain/1.0.0": {
+      "type": "project",
+      "path": "../EventDomain/project.json",
+      "msbuildProject": "../EventDomain/EventDomain.xproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "EventDomain >= 1.0.0-*",
+      "EventStore.Client >= 3.6.3"
+    ],
+    ".NETFramework,Version=v4.6": []
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
+}

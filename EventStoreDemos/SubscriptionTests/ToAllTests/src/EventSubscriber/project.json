@@ -1,0 +1,16 @@
+﻿{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "EventDomain": "1.0.0-*",
+    "EventStore.Client": "3.6.3"
+  },
+
+  "frameworks": {
+    "net46": {
+    }
+  }
+}
