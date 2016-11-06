@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "EventStore.ClientAPI.NetCore": "0.0.1-alpha",
+    "Newtonsoft.Json": "9.0.1",
+    "NEST": "5.0.0-rc1"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        },
+        "System.Runtime.Loader": "4.0.0"
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
