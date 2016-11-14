@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.6": {
-      "EventStore.Client/3.6.3": {
+      "EventStore.Client/3.5.0": {
         "type": "package",
         "compile": {
           "lib/net40/EventStore.ClientAPI.dll": {}
@@ -25,11 +25,11 @@
     }
   },
   "libraries": {
-    "EventStore.Client/3.6.3": {
-      "sha512": "09F/DHhFnuRAYadhfJqokbJeyNbFHTAKMrPkfI/KAb4fd4bUY8Dvq6G9n1VVhzp8JtYHnqK+91+AdBmYnKQt3A==",
+    "EventStore.Client/3.5.0": {
+      "sha512": "zBRJZLZXZ+KexQhwPcmtMTbyePXwn5WtUcIJ6fY6+U58MY2pY24Zobbu6q+CJ3TF5L053uc2zL4MlvQ+ZbaOFg==",
       "type": "package",
       "files": [
-        "EventStore.Client.3.6.3.nupkg.sha512",
+        "EventStore.Client.3.5.0.nupkg.sha512",
         "EventStore.Client.nuspec",
         "lib/net40/EventStore.ClientAPI.dll",
         "lib/net40/EventStore.ClientAPI.xml"
@@ -44,7 +44,7 @@
   "projectFileDependencyGroups": {
     "": [
       "EventDomain >= 1.0.0-*",
-      "EventStore.Client >= 3.6.3"
+      "EventStore.Client >= 3.5.0"
     ],
     ".NETFramework,Version=v4.6": []
   },

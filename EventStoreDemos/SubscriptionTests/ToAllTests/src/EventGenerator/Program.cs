@@ -12,6 +12,8 @@ using Ploeh.AutoFixture;
 
 namespace EventGenerator
 {
+    using EventStore.ClientAPI.SystemData;
+
     public class Program
     {
         private const int NumberOfThreads = 1;
@@ -21,7 +23,7 @@ namespace EventGenerator
 
         public static void Main(string[] args)
         {
-            var connection = EventStoreConnection.Create(new Uri("tcp://localhost:1113"));
+            var connection = EventStoreConnection.Create(new Uri("tcp://192.168.99.100:1113"));
 
             connection.ConnectAsync().Wait();
 
@@ -45,21 +47,21 @@ namespace EventGenerator
                                 Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(purchase.Data)),
                                 Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(purchase.MetaData))));
 
-                            if (j != 0 && j % 500 == 0)
+                            if (j != 0 && j % 200 == 0)
                             {
-                                await connection.AppendToStreamAsync($"Transactions", ExpectedVersion.Any, events);
+                                var result = await connection.AppendToStreamAsync($"Transactions", ExpectedVersion.Any, events, new UserCredentials("admin", "changeit"));
                                 events.Clear();
                             }
                         }
                     });
                 }
 
-                Task.WaitAll(tasks, 1000000);
+                Task.WaitAll(tasks);
                 stopWatch.Stop();
 
                 Console.WriteLine($"Inserting {NumberOfThreads * NumberOfIterations} events, total time: {stopWatch.ElapsedMilliseconds} ms");
+                break;
             }
-
             Console.ReadLine();
         }
     }

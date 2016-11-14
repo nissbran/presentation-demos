@@ -28,7 +28,7 @@ namespace EventSubscriber
                 Console.WriteLine($"Subscription already exist.");
             }
 
-            connection.ConnectToPersistentSubscriptionAsync("Transactions", "TestGroup", EventAppeared);
+            //connection.ConnectToPersistentSubscriptionAsync("Transactions", "TestGroup", EventAppeared);
 
             Console.ReadLine();
         }

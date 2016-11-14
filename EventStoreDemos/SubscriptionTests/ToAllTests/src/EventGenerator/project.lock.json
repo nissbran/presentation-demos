@@ -12,7 +12,7 @@
           "lib/net40/Ploeh.AutoFixture.dll": {}
         }
       },
-      "EventStore.Client/3.6.3": {
+      "EventStore.Client/3.5.0": {
         "type": "package",
         "compile": {
           "lib/net40/EventStore.ClientAPI.dll": {}
@@ -54,11 +54,11 @@
         "tools/Install.ps1"
       ]
     },
-    "EventStore.Client/3.6.3": {
-      "sha512": "09F/DHhFnuRAYadhfJqokbJeyNbFHTAKMrPkfI/KAb4fd4bUY8Dvq6G9n1VVhzp8JtYHnqK+91+AdBmYnKQt3A==",
+    "EventStore.Client/3.5.0": {
+      "sha512": "zBRJZLZXZ+KexQhwPcmtMTbyePXwn5WtUcIJ6fY6+U58MY2pY24Zobbu6q+CJ3TF5L053uc2zL4MlvQ+ZbaOFg==",
       "type": "package",
       "files": [
-        "EventStore.Client.3.6.3.nupkg.sha512",
+        "EventStore.Client.3.5.0.nupkg.sha512",
         "EventStore.Client.nuspec",
         "lib/net40/EventStore.ClientAPI.dll",
         "lib/net40/EventStore.ClientAPI.xml"
@@ -95,7 +95,7 @@
     "": [
       "AutoFixture >= 3.47.8",
       "EventDomain >= 1.0.0-*",
-      "EventStore.Client >= 3.6.3",
+      "EventStore.Client >= 3.5.0",
       "Newtonsoft.Json >= 8.0.3"
     ],
     ".NETFramework,Version=v4.6": []

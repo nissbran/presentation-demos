@@ -5,7 +5,7 @@
   },
 
   "dependencies": {
-    "EventStore.Client": "3.6.3",
+    "EventStore.Client": "3.5.0",
     "AutoFixture": "3.47.8",
     "Newtonsoft.Json": "8.0.3",
     "EventDomain": "1.0.0-*"
