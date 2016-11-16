@@ -5,9 +5,10 @@
     "emitEntryPoint": true
   },
   "dependencies": {
+    "DockerDemo.Domain": "1.0.0-*",
     "EventStore.ClientAPI.NetCore": "0.0.1-alpha",
     "Newtonsoft.Json": "9.0.1",
-    "NEST": "5.0.0-rc1"
+    "System.Data.SqlClient": "4.3.0"
   },
   "frameworks": {
     "netcoreapp1.0": {

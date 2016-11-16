@@ -6,17 +6,18 @@
     public class Program
     {
         private static bool _programIsStopping = false;
+        private static EventSubscriber _eventSubscriber;
 
         public static void Main(string[] args)
         {
             AssemblyLoadContext.Default.Unloading += MethodInvokedOnSigTerm;
             Console.CancelKeyPress += CancelKeyPressed;
 
+            _eventSubscriber = new EventSubscriber();
+
             while (!_programIsStopping)
             {
                 System.Threading.Thread.Sleep(5000);
-
-                Console.WriteLine("The consumer is alive!");
             }
         }
 
