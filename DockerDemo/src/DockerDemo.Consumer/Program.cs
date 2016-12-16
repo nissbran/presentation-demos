@@ -10,6 +10,10 @@
 
         public static void Main(string[] args)
         {
+            Console.WriteLine("Starting consumer");
+            
+            System.Threading.Thread.Sleep(5000);
+
             AssemblyLoadContext.Default.Unloading += MethodInvokedOnSigTerm;
             Console.CancelKeyPress += CancelKeyPressed;
 

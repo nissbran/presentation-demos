@@ -61,7 +61,9 @@ namespace DockerDemo.Consumer
                 _connection.CreatePersistentSubscriptionAsync(
                     "$ce-Account",
                     "Consumer",
-                    PersistentSubscriptionSettings.Create().PreferRoundRobin(), new UserCredentials("admin", "changeit"));
+                    PersistentSubscriptionSettings.Create()
+                        .MinimumCheckPointCountOf(1).
+                        PreferRoundRobin(), new UserCredentials("admin", "changeit"));
             }
             catch (System.Exception)
             {
