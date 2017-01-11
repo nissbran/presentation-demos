@@ -4,7 +4,7 @@ services:
   api:
    image: dockerdemo/api
    ports:
-    - 5000:5000
+     - 5000:5000
    networks:
      - clusternetwork
 
@@ -14,7 +14,7 @@ services:
      - clusternetwork
 
   eventstore1:
-   image: krnissbrandt/eventstore-cluster-node-docker:3.9.2
+   image: krnissbrandt/eventstore-cluster-node-docker:3.9.3
    env_file:
      - common-variables.env
    environment:
@@ -26,8 +26,8 @@ services:
      - EVENTSTORE_EXT_TCP_PORT=1113
      - EVENTSTORE_EXT_HTTP_PREFIXES=http://*:2113/
    ports:
-     - 1113:1113
-     - 2113:2113
+     - 127.0.0.1:1113:1113
+     - 127.0.0.1:2113:2113
    volumes:
      - "~/Data/demodocker/evenstore/node1/db:/data/db"
      - "~/Data/demodocker/evenstore/node1/logs:/data/logs"
@@ -37,7 +37,7 @@ services:
        ipv4_address: 172.20.0.11
        
   eventstore2:
-   image: krnissbrandt/eventstore-cluster-node-docker:3.9.2
+   image: krnissbrandt/eventstore-cluster-node-docker:3.9.3
    env_file:
      - common-variables.env
    environment:
@@ -50,8 +50,8 @@ services:
      - EVENTSTORE_EXT_TCP_PORT=1123
      - EVENTSTORE_EXT_HTTP_PREFIXES=http://*:2123/
    ports:
-     - 1123:1123
-     - 2123:2123
+     - 127.0.0.1:1123:1123
+     - 127.0.0.1:2123:2123
    volumes:
      - "~/Data/demodocker/evenstore/node2/db:/data/db"
      - "~/Data/demodocker/evenstore/node2/logs:/data/logs"
@@ -61,7 +61,7 @@ services:
        ipv4_address: 172.20.0.12
    
   eventstore3:
-   image: krnissbrandt/eventstore-cluster-node-docker:3.9.2
+   image: krnissbrandt/eventstore-cluster-node-docker:3.9.3
    env_file:
      - common-variables.env
    environment:
@@ -73,8 +73,8 @@ services:
      - EVENTSTORE_EXT_TCP_PORT=1133
      - EVENTSTORE_EXT_HTTP_PREFIXES=http://*:2133/
    ports:
-     - 1133:1133
-     - 2133:2133
+     - 127.0.0.1:1133:1133
+     - 127.0.0.1:2133:2133
    volumes:
      - "~/Data/demodocker/evenstore/node3/db:/data/db"
      - "~/Data/demodocker/evenstore/node3/logs:/data/logs"
@@ -105,8 +105,6 @@ services:
   #   networks:
   #    clusternetwork:
   #      ipv4_address: 172.20.0.14
-   
-    
 
 networks:
   clusternetwork:
