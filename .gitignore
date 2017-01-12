@@ -183,4 +183,5 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 .vscode
+.vs
 project.lock.json
