@@ -1,7 +1,8 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Demo.EventStore.Lib.Common": "1.0.0-*"
   },
 
   "frameworks": {

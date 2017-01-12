@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Subscribers", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Subscribers\Demo.EventStore.Lib.Subscribers.xproj", "{39198184-54F7-4602-BA0E-91D6331C3A53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ED38CD4F-C642-4E9B-89A2-2BAF36BEC89D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.EventPublisher", "src\Demo.Bank.EventPublisher\Demo.Bank.EventPublisher.xproj", "{ECD66AD9-E231-4303-BC8D-16C85641D6CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F3C41BC-087C-48F6-9C57-E899371C6DBA}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Common", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Common\Demo.EventStore.Lib.Common.xproj", "{F9112698-658E-4626-8127-6AA89B2D596E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39198184-54F7-4602-BA0E-91D6331C3A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39198184-54F7-4602-BA0E-91D6331C3A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39198184-54F7-4602-BA0E-91D6331C3A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39198184-54F7-4602-BA0E-91D6331C3A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD66AD9-E231-4303-BC8D-16C85641D6CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD66AD9-E231-4303-BC8D-16C85641D6CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD66AD9-E231-4303-BC8D-16C85641D6CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD66AD9-E231-4303-BC8D-16C85641D6CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9112698-658E-4626-8127-6AA89B2D596E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9112698-658E-4626-8127-6AA89B2D596E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9112698-658E-4626-8127-6AA89B2D596E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9112698-658E-4626-8127-6AA89B2D596E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39198184-54F7-4602-BA0E-91D6331C3A53} = {F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}
+		{ECD66AD9-E231-4303-BC8D-16C85641D6CD} = {ED38CD4F-C642-4E9B-89A2-2BAF36BEC89D}
+		{F9112698-658E-4626-8127-6AA89B2D596E} = {F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}
+	EndGlobalSection
+EndGlobal

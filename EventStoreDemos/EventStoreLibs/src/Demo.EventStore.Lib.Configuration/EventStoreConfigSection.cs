@@ -2,6 +2,7 @@
 {
     using System.Configuration;
     using System.Linq;
+    using Common;
 
     public class EventStoreConfigSection : ConfigurationSection
     {

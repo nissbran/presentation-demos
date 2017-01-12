@@ -1,4 +1,4 @@
-﻿namespace Demo.EventStore.Lib.Configuration
+﻿namespace Demo.EventStore.Lib.Common
 {
     using System.Collections.Generic;
 

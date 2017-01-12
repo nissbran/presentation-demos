@@ -1,4 +1,4 @@
-﻿namespace Demo.EventStore.Lib.Subscribers
+﻿namespace Demo.EventStore.Lib.Common
 {
     using System;
     using System.Collections.Generic;

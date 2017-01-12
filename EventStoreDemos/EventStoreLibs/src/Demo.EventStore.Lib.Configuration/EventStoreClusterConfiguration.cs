@@ -1,6 +1,7 @@
 ﻿namespace Demo.EventStore.Lib.Configuration
 {
     using System.Collections.Generic;
+    using Common;
 
     public class EventStoreClusterConfiguration : IEventStoreClusterConfiguration
     {

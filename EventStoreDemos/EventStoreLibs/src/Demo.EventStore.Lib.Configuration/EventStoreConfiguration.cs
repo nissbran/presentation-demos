@@ -1,5 +1,7 @@
 ﻿namespace Demo.EventStore.Lib.Configuration
 {
+    using Common;
+
     public class EventStoreConfiguration : IEventStoreConfiguration
     {
         public bool UseEnvironmentVariableSetting { get; internal set; }

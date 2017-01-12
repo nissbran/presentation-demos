@@ -1,5 +1,7 @@
 ﻿namespace Demo.EventStore.Lib.Configuration
 {
+    using Common;
+
     public class EventStoreClusterNode : IEventStoreClusterNode
     {
         public int Number { get; internal set; }
