@@ -16,6 +16,8 @@
 
             eventStoreConnection.ConnectAsync().Wait();
 
+
+
             Console.ReadLine();
         }
     }
