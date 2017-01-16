@@ -1,12 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DomainEvent.cs" company="Collector AB">
-//   Copyright © Collector AB. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-namespace Demo.Bank.Domain
+﻿namespace Demo.Bank.Domain
 {
-    public class DomainEvent
+    using EventStore.Lib.Common.Domain;
+
+    public class DomainEvent : IDomainEvent
     {
-        
+        public DomainMetadata Metadata { get; set; } = new DomainMetadata();
     }
 }

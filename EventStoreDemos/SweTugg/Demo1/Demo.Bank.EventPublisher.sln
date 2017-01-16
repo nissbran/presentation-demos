@@ -22,6 +22,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.Domain", "src\Dem
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.ReadStoreSync", "src\Demo.Bank.ReadStoreSync\Demo.Bank.ReadStoreSync.xproj", "{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Write", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Write\Demo.EventStore.Lib.Write.xproj", "{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{F9112698-658E-4626-8127-6AA89B2D596E} = {F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}
 		{A8599AC7-7337-43C7-B9C9-819E001DDE7A} = {ED38CD4F-C642-4E9B-89A2-2BAF36BEC89D}
 		{9034A3A2-9BDD-402D-ABFE-9EEFE9073538} = {ED38CD4F-C642-4E9B-89A2-2BAF36BEC89D}
+		{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7} = {F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}
 	EndGlobalSection
 EndGlobal

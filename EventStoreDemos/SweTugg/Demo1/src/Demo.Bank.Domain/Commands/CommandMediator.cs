@@ -1,5 +1,6 @@
 ﻿namespace Demo.Bank.Domain.Commands
 {
+    using Exceptions;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
