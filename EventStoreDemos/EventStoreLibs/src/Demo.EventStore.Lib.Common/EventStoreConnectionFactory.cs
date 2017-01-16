@@ -33,7 +33,7 @@
             if (configuration.ClusterConfiguration.UseSsl)
             {
                 // This host name does not need to exist. It's used only to enable server validation in terms of matching certificate CN (*.collector.se) and trust chain.
-                connectionSettings.UseSslConnection("checkout-eventstore.collector.se", validateServer: true);
+                connectionSettings.UseSslConnection("your-domain.com", validateServer: true);
             }
 
             return EventStoreConnection.Create(connectionSettings.Build());

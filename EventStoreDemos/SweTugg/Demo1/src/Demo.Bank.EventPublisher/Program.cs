@@ -12,7 +12,7 @@
         public static void Main(string[] args)
         {
             var eventStoreConnection = EventStoreConnectionFactory.Create(
-                new EventStoreSingleNodeConfiguration(),
+                new EventStore3NodeClusterConfiguration(),
                 new EventStoreLogger(),
                 "admin", "changeit");
 
@@ -28,7 +28,7 @@
                 account.AddBankTransferTransaction(50);
                 eventStore.Save(account).Wait();
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 account = new Account("test1234");
                 eventStore.Save(account).Wait();
