@@ -1,10 +1,10 @@
-﻿using System.Threading;
-using Demo.Bank.ReadStoreSync.Logger;
-using Demo.EventStore.Lib.Subscribers;
-using EventStore.ClientAPI;
-
-namespace Demo.Bank.ReadStoreSync.Subscribers
+﻿namespace Demo.Bank.ReadStoreSync.Subscribers
 {
+    using System.Threading;
+    using EventStore.Lib.Subscribers;
+    using global::EventStore.ClientAPI;
+    using Logger;
+
     public class AccountDataSubscriber : EventStorePersistentRegularSubscriber
     {
         public static long Counter = 0;

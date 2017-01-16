@@ -2,6 +2,7 @@
 {
     using System;
     using global::EventStore.ClientAPI;
+
     public class EventStoreLogger : ILogger
     {
         public void Error(string format, params object[] args)

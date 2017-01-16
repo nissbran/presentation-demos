@@ -1,4 +1,4 @@
-﻿namespace Demo.Bank.Domain.Commads
+﻿namespace Demo.Bank.Domain.Commands
 {
     public interface ICommand
     {

@@ -1,7 +1,7 @@
-﻿using Demo.EventStore.Lib.Subscribers;
-
-namespace Demo.Bank.ReadStoreSync.Subscribers
+﻿namespace Demo.Bank.ReadStoreSync.Subscribers
 {
+    using EventStore.Lib.Subscribers;
+
     public class AccountDataSubscriberSettings : IEventStorePersistentSubscriberSettings
     {
         public int StopSubscriptionTimeout { get; } = 3000;

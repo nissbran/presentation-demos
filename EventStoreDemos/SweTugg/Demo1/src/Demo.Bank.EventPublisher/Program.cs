@@ -1,15 +1,14 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-using Demo.Bank.Domain.Events.Transactions;
-using EventStore.ClientAPI;
-using Newtonsoft.Json;
-
-namespace Demo.Bank.EventPublisher
+﻿namespace Demo.Bank.EventPublisher
 {
     using System;
+    using System.Text;
+    using System.Threading.Tasks;
     using Configuration;
+    using Domain.Events.Transactions;
     using EventStore.Lib.Common;
+    using global::EventStore.ClientAPI;
     using Logger;
+    using Newtonsoft.Json;
 
     public class Program
     {

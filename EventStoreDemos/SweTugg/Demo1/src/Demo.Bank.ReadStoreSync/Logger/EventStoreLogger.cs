@@ -1,8 +1,8 @@
-﻿using System;
-using EventStore.ClientAPI;
-
-namespace Demo.Bank.ReadStoreSync.Logger
+﻿namespace Demo.Bank.ReadStoreSync.Logger
 {
+    using System;
+    using global::EventStore.ClientAPI;
+
     public class EventStoreLogger : ILogger
     {
         public void Error(string format, params object[] args)

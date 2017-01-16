@@ -1,11 +1,11 @@
-﻿using System;
-using Demo.Bank.EventPublisher.Configuration;
-using Demo.Bank.ReadStoreSync.Logger;
-using Demo.Bank.ReadStoreSync.Subscribers;
-using Demo.EventStore.Lib.Common;
-
-namespace Demo.Bank.ReadStoreSync
+﻿namespace Demo.Bank.ReadStoreSync
 {
+    using System;
+    using Configuration;
+    using EventStore.Lib.Common;
+    using Logger;
+    using Subscribers;
+
     public class Program
     {
         public static void Main(string[] args)

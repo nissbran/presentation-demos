@@ -1,8 +1,8 @@
-﻿using System;
-using Demo.EventStore.Lib.Subscribers;
-
-namespace Demo.Bank.ReadStoreSync.Logger
+﻿namespace Demo.Bank.ReadStoreSync.Logger
 {
+    using System;
+    using EventStore.Lib.Subscribers;
+
     public class SubscriptionLogger : ISubscriptionLogger
     {
         public void LogDebug(string message, Exception exception = null)
