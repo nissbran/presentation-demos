@@ -1,9 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventStoreConfiguration.cs" company="Collector AB">
-//   Copyright © Collector AB. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-namespace Demo.Bank.EventPublisher.Configuration
+﻿namespace Demo.Bank.ReadStoreSync.Configuration
 {
     using EventStore.Lib.Common;
 
