@@ -5,8 +5,8 @@
     public class AccountDataSubscriberSettings : IEventStorePersistentSubscriberSettings
     {
         public int StopSubscriptionTimeout { get; } = 3000;
-        public string Stream { get; } = "Account-Test";
-        public string SubscriptionGroup { get; } = "TestGroup";
+        public string Stream { get; } = "$ce-account";
+        public string SubscriptionGroup { get; } = "AccountReadStoreSync";
         public int NumberOfParrallelSubscribers { get; } = 10;
     }
 }

@@ -18,12 +18,12 @@
 
     public class EventStoreClusterConfiguration : IEventStoreClusterConfiguration
     {
-        private const string IpAddress = "192.168.99.100";
+        private const string IpAddress = "127.0.0.1";
 
         public IEnumerable<IEventStoreClusterNode> ClusterNodes { get; } = new[]{
-            new ClusterNode(1, IpAddress, 2114),
-            new ClusterNode(2, IpAddress, 2124),
-            new ClusterNode(3, IpAddress, 2134),
+            new ClusterNode(1, IpAddress, 2113),
+            new ClusterNode(2, IpAddress, 2123),
+            new ClusterNode(3, IpAddress, 2133),
         };
 
         public bool UseSsl { get; } = false;
