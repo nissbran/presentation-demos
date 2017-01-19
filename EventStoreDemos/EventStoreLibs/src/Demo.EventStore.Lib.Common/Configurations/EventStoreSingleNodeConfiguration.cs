@@ -1,7 +1,5 @@
-﻿namespace Demo.Bank.EventPublisher.Configuration
+﻿namespace Demo.EventStore.Lib.Common.Configurations
 {
-    using EventStore.Lib.Common;
-
     public class EventStoreSingleNodeConfiguration : IEventStoreConfiguration
     {
         public bool UseSingleNode { get; }

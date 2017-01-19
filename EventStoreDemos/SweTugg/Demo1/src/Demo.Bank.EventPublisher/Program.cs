@@ -1,9 +1,11 @@
-﻿namespace Demo.Bank.EventPublisher
+﻿using System.Threading.Tasks;
+
+namespace Demo.Bank.EventPublisher
 {
     using System;
-    using Configuration;
     using Domain.Models.Account;
     using EventStore.Lib.Common;
+    using EventStore.Lib.Common.Configurations;
     using EventStore.Lib.Write.Persistance;
     using Logger;
 
@@ -20,20 +22,43 @@
 
             var eventStore = new EventStoreDomainRepository(eventStoreConnection);
 
-            Account account;
-            try
-            {
-                account = eventStore.GetById<Account>("test1234").Result;
+            var tasks = new Task[100];
 
-                account.AddBankTransferTransaction(50);
-                eventStore.Save(account).Wait();
-            }
-            catch (Exception e)
+            for (int i = 0; i < 100; i++)
             {
-                account = new Account("test1234");
-                eventStore.Save(account).Wait();
-                Console.WriteLine(e);
+                try
+                {
+                    var account = eventStore.GetById<Account>($"test6-{i}").Result;
+                }
+                catch (Exception e)
+                {
+                    var account = new Account($"test6-{i}");
+                    eventStore.Save(account).Wait();
+                }
+
             }
+
+
+            for (int i = 0; i < 100; i++)
+            {
+                var accountNumber = i;
+
+                tasks[i] = Task.Run(async () =>
+                {
+                    for (int j = 0; j < 50; j++)
+                    {
+                        var account = await eventStore.GetById<Account>($"test6-{accountNumber}");
+                        await Task.Delay(500);
+                        account.AddBankTransferTransaction(5);
+                        account.AddBankTransferTransaction(5);
+                        account.AddBankTransferTransaction(5);
+                        account.AddBankTransferTransaction(5);
+                        await eventStore.Save(account);
+                    }
+                });
+            }
+
+            Task.WaitAll(tasks);
 
             //var transactionAdded = new BankTransferTransactionAddedEvent
             //{

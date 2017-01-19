@@ -1,8 +1,6 @@
-﻿namespace Demo.Bank.EventPublisher.Configuration
+﻿namespace Demo.EventStore.Lib.Common.Configurations
 {
-    using System;
     using System.Collections.Generic;
-    using EventStore.Lib.Common;
 
     public class EventStore3NodeClusterConfiguration : IEventStoreConfiguration
     {

@@ -7,15 +7,21 @@
   "dependencies": {
     "Demo.EventStore.Lib.Subscribers": "1.0.0-*",
     "StackExchange.Redis": "1.2.0",
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.1"
-    }
+    "Demo.Bank.Domain": "1.0.0-*"
   },
 
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": "dnxcore50"
-    }
+      "imports": "dnxcore50",
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.1"
+        }
+      }
+    },
+    "net46": {
+      
+    } 
   }
 }
