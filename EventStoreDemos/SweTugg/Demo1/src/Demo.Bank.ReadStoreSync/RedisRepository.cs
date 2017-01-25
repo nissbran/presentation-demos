@@ -10,7 +10,7 @@ namespace Demo.Bank.ReadStoreSync
 
         public RedisRepository()
         {
-            _redisConnection = ConnectionMultiplexer.Connect("localhost,syncTimeout=5000");
+            _redisConnection = ConnectionMultiplexer.Connect("127.0.0.1,syncTimeout=5000");
 
 
             _redisDatabase = _redisConnection.GetDatabase();
