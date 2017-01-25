@@ -1,40 +1,33 @@
-﻿
-namespace Demo.Bank.ReadStoreSync.Subscribers
+﻿namespace Demo.Bank.ReadStoreSync.Subscribers
 {
     using System;
     using System.Text;
-    using Demo.Bank.ReadStoreSync.Handlers;
-    using Demo.EventStore.Lib.Common.Domain;
-    using Newtonsoft.Json;
-
     using System.Threading;
     using Configuration;
+    using EventStore.Lib.Common.Domain;
     using EventStore.Lib.Subscribers;
     using global::EventStore.ClientAPI;
+    using Handlers;
     using Logger;
+    using Newtonsoft.Json;
 
-    public class AccountDataSubscriber : EventStorePersistentRegularSubscriber
+    public class AccountDataCatchAllSubscriber : EventStoreCatchAllSubscriber
     {
         public static long Counter = 0;
 
+        private readonly AccountBalanceReadModelHandler _accountBalanceReadModelHandler;
+        private readonly SubscriptionLogger _logger = new SubscriptionLogger();
         private const string AccountStreamPrefix = "account-";
 
-        private readonly AccountBalanceLockingReadModelHandler _accountBalanceLockingReadModelHandler;
-
-        public AccountDataSubscriber(IEventStoreConnection connection, RedisRepository redisRepository)
-            : base(connection, new SubscriptionLogger(), new AccountDataSubscriberSettings())
+        public AccountDataCatchAllSubscriber(IEventStoreConnection connection, RedisRepository redisRepository) 
+            : base(connection, new SubscriptionLogger(), new AccountDataCatchAllSubscriberSettings())
         {
-            _accountBalanceLockingReadModelHandler = new AccountBalanceLockingReadModelHandler(redisRepository);
+            _accountBalanceReadModelHandler = new AccountBalanceReadModelHandler(redisRepository);
         }
 
         public void Start()
         {
             SetupConnectionEventListeners();
-        }
-
-        public void Stop()
-        {
-            StopSubscriptions();
         }
 
         protected override void EventAppeared(ResolvedEvent resolvedEvent)
@@ -47,7 +40,12 @@ namespace Demo.Bank.ReadStoreSync.Subscribers
             var domainEvent = ConvertEventDataToDomainEvent(resolvedEvent);
             var accountNumber = GetAccountNumber(resolvedEvent);
 
-            _accountBalanceLockingReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
+            _accountBalanceReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
+        }
+
+        protected override void LiveProcessingStarted(EventStoreCatchUpSubscription subscription)
+        {
+            _logger.LogInformation("Live processing started...");
         }
 
         private bool IsValidEvent(ResolvedEvent resolvedEvent)

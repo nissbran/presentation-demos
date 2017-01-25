@@ -1,4 +1,4 @@
-﻿namespace Demo.Bank.ReadStoreSync.Subscribers
+﻿namespace Demo.Bank.ReadStoreSync.Configuration
 {
     using EventStore.Lib.Subscribers;
 

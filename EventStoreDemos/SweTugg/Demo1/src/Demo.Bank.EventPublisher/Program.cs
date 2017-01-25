@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace Demo.Bank.EventPublisher
+﻿namespace Demo.Bank.EventPublisher
 {
     using System;
+    using System.Threading.Tasks;
     using Domain.Models.Account;
     using EventStore.Lib.Common;
     using EventStore.Lib.Common.Configurations;
@@ -14,32 +13,34 @@ namespace Demo.Bank.EventPublisher
         public static void Main(string[] args)
         {
             var eventStoreConnection = EventStoreConnectionFactory.Create(
-                new EventStore3NodeClusterConfiguration(),
+                new EventStoreSingleNodeConfiguration(), 
                 new EventStoreLogger(),
                 "admin", "changeit");
+
+            const string accountNumberPrefix = "1206";
 
             eventStoreConnection.ConnectAsync().Wait();
 
             var eventStore = new EventStoreDomainRepository(eventStoreConnection);
 
-            var tasks = new Task[100];
+            var tasks = new Task[50];
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 50; i++)
             {
                 try
                 {
-                    var account = eventStore.GetById<Account>($"test6-{i}").Result;
+                    var account = eventStore.GetById<Account>($"{accountNumberPrefix}-{i}").Result;
                 }
                 catch (Exception e)
                 {
-                    var account = new Account($"test6-{i}");
+                    var account = new Account($"{accountNumberPrefix}-{i}");
                     eventStore.Save(account).Wait();
                 }
 
             }
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 50; i++)
             {
                 var accountNumber = i;
 
@@ -47,8 +48,8 @@ namespace Demo.Bank.EventPublisher
                 {
                     for (int j = 0; j < 50; j++)
                     {
-                        var account = await eventStore.GetById<Account>($"test6-{accountNumber}");
-                        await Task.Delay(500);
+                        var account = await eventStore.GetById<Account>($"{accountNumberPrefix}-{accountNumber}");
+                        //await Task.Delay(500);
                         account.AddBankTransferTransaction(5);
                         account.AddBankTransferTransaction(5);
                         account.AddBankTransferTransaction(5);

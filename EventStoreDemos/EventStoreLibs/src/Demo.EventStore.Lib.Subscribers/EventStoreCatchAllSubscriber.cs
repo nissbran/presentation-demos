@@ -81,7 +81,7 @@
             OnEventStoreSubscriptionDropped(subscription, reason, exception);
         }
 
-        private void StopSubscription()
+        public void StopSubscription()
         {
             lock (_subscriptionModificationLock)
             {
