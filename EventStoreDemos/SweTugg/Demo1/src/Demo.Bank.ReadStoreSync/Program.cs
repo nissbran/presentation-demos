@@ -8,25 +8,39 @@
     using Logger;
     using Subscribers;
     using Domain.ReadModels;
+    using Repositories;
 
     public class Program
     {
+        private const bool UseCatchAll = true;
+        private const bool UseCache = true;
+
+        private static AccountDataSubscriber _accountDataSubscriber;
+        private static AccountDataCatchAllSubscriber _accountDataCatchAllSubscriber;
+
         public static void Main(string[] args)
         {
             var eventStoreConnection = EventStoreConnectionFactory.Create(
-                   new EventStoreSingleNodeConfiguration(), 
+                   new EventStore3NodeClusterConfiguration(), 
                    new EventStoreLogger(),
                    "admin", "changeit");
 
             var redisRepository = new RedisRepository();
+            var accountInformationRepository = new AccountInformationRepository();
 
-            var accountDataSubscriber = new AccountDataSubscriber(eventStoreConnection, redisRepository);
+            if (UseCache)
+            {
+                _accountDataSubscriber = new AccountDataSubscriber(eventStoreConnection, redisRepository);
 
-            accountDataSubscriber.Start();
+                _accountDataSubscriber.Start();
+            }
 
-            var accountCatchAllSubscriber = new AccountDataCatchAllSubscriber(eventStoreConnection, redisRepository);
+            if (UseCatchAll)
+            {
+                _accountDataCatchAllSubscriber = new AccountDataCatchAllSubscriber(eventStoreConnection, redisRepository, accountInformationRepository);
 
-            accountCatchAllSubscriber.Start();
+                _accountDataCatchAllSubscriber.Start();
+            }
 
             eventStoreConnection.ConnectAsync().Wait();
             
@@ -43,10 +57,14 @@
             }, token);
 
             Console.ReadLine();
-            
-            accountDataSubscriber.Stop();
-
-            accountCatchAllSubscriber.StopSubscription();
+            if (UseCache)
+            {
+                _accountDataSubscriber.Stop();
+            }
+            if (UseCatchAll)
+            {
+                _accountDataCatchAllSubscriber.StopSubscription();
+            }
 
             eventStoreConnection.Close();
 
@@ -56,7 +74,7 @@
             {
                 var data = redisRepository.Get<AccountBalanceReadModel>($"balance-1206-{i}");
 
-                if (data.Balance != 4000)
+                if (data.Balance != 2000)
                 {
                     Console.WriteLine($"Error {data.AccountNumber}, balance: {data.Balance}");
                 }

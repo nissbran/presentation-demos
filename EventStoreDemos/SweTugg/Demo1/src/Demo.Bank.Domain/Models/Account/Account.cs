@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Commands.Account;
     using Events.Account;
     using Events.Transactions;
     using EventStore.Lib.Common.Domain;
@@ -21,7 +22,9 @@
         private static readonly Dictionary<Type, Action<IDomainEvent, Account>> EventDelegates = new Dictionary<Type, Action<IDomainEvent, Account>>
             {
                 {typeof(AccountCreatedEvent), (e, a) => a.On((AccountCreatedEvent) e)},
-                {typeof(BankTransferTransactionAddedEvent),(e, a) => a.On((BankTransferTransactionAddedEvent) e)}
+                {typeof(AccountContactDetailsSetEvent),(e, a) => a.On((AccountContactDetailsSetEvent) e)},
+                {typeof(BankTransferTransactionAddedEvent),(e, a) => a.On((BankTransferTransactionAddedEvent) e)},
+                {typeof(CardTransactionAddedEvent),(e, a) => a.On((CardTransactionAddedEvent) e)}
             };
 
         public Account() { }
@@ -33,6 +36,16 @@
             Apply(new AccountCreatedEvent
             {
                 AccountNumber = id
+            });
+        }
+
+        public void AddContactDetails(CreateAccountCommand command)
+        {
+            Apply(new AccountContactDetailsSetEvent
+            {
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                RegistrationNumber = command.RegistrationNumber
             });
         }
 
@@ -51,13 +64,33 @@
                 Amount = amount
             });
         }
+        public void AddCardTransaction(decimal amount, string authCode)
+        {
+            Apply(new CardTransactionAddedEvent
+            {
+                Amount = amount,
+                AuthCode = authCode
+            });
+        }
 
         internal void On(AccountCreatedEvent e)
         {
             _state.AccountNumber = e.AccountNumber;
         }
 
+        internal void On(AccountContactDetailsSetEvent e)
+        {
+            _state.ContactDetails.FirstName = e.FirstName;
+            _state.ContactDetails.LastName = e.FirstName;
+            _state.ContactDetails.RegistrationNumber = e.RegistrationNumber;
+        }
+
         internal void On(BankTransferTransactionAddedEvent e)
+        {
+            _state.Balance += e.Amount;
+        }
+
+        internal void On(CardTransactionAddedEvent e)
         {
             _state.Balance += e.Amount;
         }

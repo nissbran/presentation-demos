@@ -10,18 +10,21 @@
     using Handlers;
     using Logger;
     using Newtonsoft.Json;
+    using Repositories;
 
     public class AccountDataCatchAllSubscriber : EventStoreCatchAllSubscriber
     {
         public static long Counter = 0;
 
         private readonly AccountBalanceReadModelHandler _accountBalanceReadModelHandler;
+        private readonly AccountInformationHandler _accountInformationHandler;
         private readonly SubscriptionLogger _logger = new SubscriptionLogger();
         private const string AccountStreamPrefix = "account-";
 
-        public AccountDataCatchAllSubscriber(IEventStoreConnection connection, RedisRepository redisRepository) 
+        public AccountDataCatchAllSubscriber(IEventStoreConnection connection, RedisRepository redisRepository, AccountInformationRepository accountInformationRepository) 
             : base(connection, new SubscriptionLogger(), new AccountDataCatchAllSubscriberSettings())
         {
+            _accountInformationHandler = new AccountInformationHandler(accountInformationRepository);
             _accountBalanceReadModelHandler = new AccountBalanceReadModelHandler(redisRepository);
         }
 
@@ -40,7 +43,8 @@
             var domainEvent = ConvertEventDataToDomainEvent(resolvedEvent);
             var accountNumber = GetAccountNumber(resolvedEvent);
 
-            _accountBalanceReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
+            _accountInformationHandler.UpdateReadModel(accountNumber, domainEvent, resolvedEvent.Event.EventNumber);
+            //_accountBalanceReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
         }
 
         protected override void LiveProcessingStarted(EventStoreCatchUpSubscription subscription)

@@ -54,7 +54,7 @@
             {
                 await InsertToEventStore(streamId, streamVersion, domainEvents);
             }
-            catch (WrongExpectedVersionException e)
+            catch (WrongExpectedVersionException)
             {
                 Console.WriteLine("Wrong version");
             }

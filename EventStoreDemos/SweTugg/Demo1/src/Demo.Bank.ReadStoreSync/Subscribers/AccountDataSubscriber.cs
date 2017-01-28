@@ -47,7 +47,7 @@ namespace Demo.Bank.ReadStoreSync.Subscribers
             var domainEvent = ConvertEventDataToDomainEvent(resolvedEvent);
             var accountNumber = GetAccountNumber(resolvedEvent);
 
-            _accountBalanceLockingReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
+            _accountBalanceLockingReadModelHandler.UpdateReadModel(accountNumber, domainEvent, resolvedEvent.Event.EventNumber);
         }
 
         private bool IsValidEvent(ResolvedEvent resolvedEvent)

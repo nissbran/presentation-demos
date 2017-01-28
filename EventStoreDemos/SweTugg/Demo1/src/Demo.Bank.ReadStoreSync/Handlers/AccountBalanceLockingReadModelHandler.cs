@@ -24,7 +24,7 @@
            // SetupLockingExpireJob();
         }
 
-        public void UpdateReadModel(string accountNumber, IDomainEvent domainEvent)
+        public void UpdateReadModel(string accountNumber, IDomainEvent domainEvent, int eventNumber)
         {
             var accountBalance = $"balance-{accountNumber}";
 
@@ -36,8 +36,13 @@
             {
                 var accountBalanceReadModel = _redisRepository.Get<AccountBalanceReadModel>(accountBalance);
 
-                UpdateReadModel(accountBalanceReadModel, domainEvent);
+                if (accountBalanceReadModel.EventNumbersProcessed.Contains(eventNumber))
+                    return;
 
+                accountBalanceReadModel.EventNumbersProcessed.Add(eventNumber);
+
+                UpdateReadModel(accountBalanceReadModel, domainEvent);
+                
                 _redisRepository.Set(accountBalance, accountBalanceReadModel);
 
                 accountBalanceLock.LastAccessed = DateTime.Now;

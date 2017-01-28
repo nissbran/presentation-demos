@@ -1,7 +1,6 @@
-﻿namespace Demo.EventStore.Lib.Write.Persistance
+﻿namespace Demo.EventStore.Lib.Common.Domain
 {
     using System.Threading.Tasks;
-    using Common.Domain;
 
     public interface IDomainRepository
     {
