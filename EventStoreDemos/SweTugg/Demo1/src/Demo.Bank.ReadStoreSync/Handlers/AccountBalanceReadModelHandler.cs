@@ -38,6 +38,12 @@
             {
                 readModel.Balance += bankTransferEvent.Amount;
             }
+
+            var cardTransactionEvent = domainEvent as CardTransactionAddedEvent;
+            if (cardTransactionEvent != null)
+            {
+                readModel.Balance += cardTransactionEvent.Amount;
+            }
         }
     }
 }

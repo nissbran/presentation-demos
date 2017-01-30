@@ -13,7 +13,7 @@
     public class Program
     {
         private const bool UseCatchAll = true;
-        private const bool UseCache = true;
+        private const bool UseCache = false;
 
         private static AccountDataSubscriber _accountDataSubscriber;
         private static AccountDataCatchAllSubscriber _accountDataCatchAllSubscriber;
@@ -51,8 +51,11 @@
                 while (!token.IsCancellationRequested)
                 {
                     await Task.Delay(1000, token);
-                    Console.WriteLine($"Number of persistent subscription events processed: {Interlocked.Read(ref AccountDataSubscriber.Counter)}");
-                    Console.WriteLine($"Number of catchall subscription events processed: {Interlocked.Read(ref AccountDataCatchAllSubscriber.Counter)}");
+                    if (UseCache)
+                        Console.WriteLine($"Number of persistent subscription events processed: {Interlocked.Read(ref AccountDataSubscriber.Counter)}");
+                    
+                    if (UseCatchAll)
+                        Console.WriteLine($"Number of catchall subscription events processed: {Interlocked.Read(ref AccountDataCatchAllSubscriber.Counter)}");
                 }
             }, token);
 
@@ -70,15 +73,15 @@
 
             monitorCancellationTokenSource.Cancel();
 
-            for (int i = 0; i < 50; i++)
-            {
-                var data = redisRepository.Get<AccountBalanceReadModel>($"balance-1206-{i}");
+            // for (int i = 0; i < 50; i++)
+            // {
+            //     var data = redisRepository.Get<AccountBalanceReadModel>($"balance-1206-{i}");
 
-                if (data.Balance != 2000)
-                {
-                    Console.WriteLine($"Error {data.AccountNumber}, balance: {data.Balance}");
-                }
-            }
+            //     if (data.Balance != 2000)
+            //     {
+            //         Console.WriteLine($"Error {data.AccountNumber}, balance: {data.Balance}");
+            //     }
+            // }
 
             Console.ReadLine();
         }

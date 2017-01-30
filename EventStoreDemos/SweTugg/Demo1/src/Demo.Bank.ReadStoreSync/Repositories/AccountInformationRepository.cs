@@ -6,22 +6,34 @@
     using EventStore.Lib.Common.Domain;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using MySql.Data.MySqlClient;
     using MySQL.Data.Entity.Extensions;
     using Sql.Context;
     using Sql.Model;
 
     public class AccountInformationRepository
     {
-        private const string MySqlConnectionString = "server=localhost;userid=root;password=123456;port=3306;database=accountinfo";
+        private const string MySqlConnectionString = "server=localhost;userid=root;password=123456;port=3306";
+        private const string DataBase = "accountinfo";
 
         private readonly IServiceProvider _serviceProvider;
 
         public AccountInformationRepository()
         {
-            _serviceProvider = new ServiceCollection()
-              .AddDbContext<AccountInformationContext>(o => o.UseMySQL(MySqlConnectionString))
-              .BuildServiceProvider();
+            MySqlConnection connection = new MySqlConnection
+            {
+                ConnectionString = MySqlConnectionString
+            };
+            connection.Open();
+            
+            MySqlCommand command = new MySqlCommand("CREATE DATABASE IF NOT EXISTS accountinfo", connection);
+            command.ExecuteNonQuery();            
+            connection.Close();
 
+            _serviceProvider = new ServiceCollection()
+              .AddDbContext<AccountInformationContext>(o => o.UseMySQL($"{MySqlConnectionString};database={DataBase}"))
+              .BuildServiceProvider();
+            
             var dbContext = _serviceProvider.GetRequiredService<AccountInformationContext>();
 
             dbContext.Database.EnsureCreated();
