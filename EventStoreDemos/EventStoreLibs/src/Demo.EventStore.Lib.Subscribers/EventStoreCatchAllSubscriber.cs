@@ -41,7 +41,7 @@
                 lock (_subscriptionModificationLock)
                 {
                     //The queue and read batch size is taken from the client apis default settings.
-                    var settings = new CatchUpSubscriptionSettings(1000, _settings.ReadBatchSize, false, false);
+                    var settings = new CatchUpSubscriptionSettings(10000, _settings.ReadBatchSize, false, false);
 
                     try
                     {

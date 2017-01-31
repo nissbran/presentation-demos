@@ -13,7 +13,7 @@
     public class Program
     {
         private const bool UseCatchAll = true;
-        private const bool UseCache = false;
+        private const bool UseCache = true;
 
         private static AccountDataSubscriber _accountDataSubscriber;
         private static AccountDataCatchAllSubscriber _accountDataCatchAllSubscriber;

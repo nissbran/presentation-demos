@@ -89,7 +89,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
     volumes: 
       - "~/Data/mysql-data:/var/lib/mysql"
-    networks: 
+    networks:
       - clusternetwork
   
 networks:

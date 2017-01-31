@@ -37,7 +37,7 @@
                         for (int k = 0; k < 5; k++)
                         {
                             await Task.Delay(1);
-                            account.AddCardTransaction(new Random().Next(0, 55000), new Random().Next(10000,99999).ToString());
+                            account.AddCardTransaction(new Random().Next(0, 52000), new Random().Next(10000,99999).ToString());
                         } 
                         await eventStore.Save(account);
                     }

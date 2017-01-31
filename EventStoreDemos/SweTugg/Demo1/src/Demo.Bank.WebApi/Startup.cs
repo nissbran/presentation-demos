@@ -1,6 +1,7 @@
 ﻿namespace Demo.Bank.WebApi
 {
     using Configuration;
+    using Demo.Bank.Sql.Model;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@
             MySqlCommand command = new MySqlCommand("CREATE DATABASE IF NOT EXISTS accountinfo", connection);
 
             command.ExecuteNonQuery();
+
             connection.Close();
 
             services.AddDbContext<AccountInformationContext>(options => options.UseMySQL($"{MySqlConnectionString};database={DataBase}"));
@@ -40,6 +42,11 @@
             loggerFactory.AddConsole();
 
             dbContext.Database.EnsureCreated();
+            dbContext.AccountCheckpoints.Add(new AccountInformationCheckpoint 
+            {
+                Checkpoint = 0
+            });
+            dbContext.SaveChanges();
 
             if (env.IsDevelopment())
             {

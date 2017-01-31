@@ -26,6 +26,9 @@
         {
             _accountInformationHandler = new AccountInformationHandler(accountInformationRepository);
             _accountBalanceReadModelHandler = new AccountBalanceReadModelHandler(redisRepository);
+
+            var position = accountInformationRepository.GetStartingPosition();
+            SubscriptionPosition = new Position(position, position);
         }
 
         public void Start()
@@ -43,7 +46,11 @@
             var domainEvent = ConvertEventDataToDomainEvent(resolvedEvent);
             var accountNumber = GetAccountNumber(resolvedEvent);
 
-            _accountInformationHandler.UpdateReadModel(accountNumber, domainEvent, resolvedEvent.Event.EventNumber);
+            _accountInformationHandler.UpdateReadModel(
+                accountNumber, 
+                domainEvent, 
+                resolvedEvent.Event.EventNumber, 
+                resolvedEvent.OriginalPosition.Value.CommitPosition);
             //_accountBalanceReadModelHandler.UpdateReadModel(accountNumber, domainEvent);
         }
 

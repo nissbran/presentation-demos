@@ -16,54 +16,84 @@
         private const string MySqlConnectionString = "server=localhost;userid=root;password=123456;port=3306";
         private const string DataBase = "accountinfo";
 
+        private readonly MySqlConnection _connection;
+
+        private readonly AccountInformationContext _accountContext;
+
         private readonly IServiceProvider _serviceProvider;
 
         public AccountInformationRepository()
         {
-            MySqlConnection connection = new MySqlConnection
+            _connection = new MySqlConnection
             {
                 ConnectionString = MySqlConnectionString
             };
-            connection.Open();
+            _connection.Open();
             
-            MySqlCommand command = new MySqlCommand("CREATE DATABASE IF NOT EXISTS accountinfo", connection);
-            command.ExecuteNonQuery();            
-            connection.Close();
+            MySqlCommand command = new MySqlCommand("CREATE DATABASE IF NOT EXISTS accountinfo", _connection);
+            command.ExecuteNonQuery();           
+            //connection.Close();
 
             _serviceProvider = new ServiceCollection()
               .AddDbContext<AccountInformationContext>(o => o.UseMySQL($"{MySqlConnectionString};database={DataBase}"))
               .BuildServiceProvider();
             
-            var dbContext = _serviceProvider.GetRequiredService<AccountInformationContext>();
+            _accountContext = _serviceProvider.GetRequiredService<AccountInformationContext>();
 
-            dbContext.Database.EnsureCreated();
+            _accountContext.Database.EnsureCreated();
         }
 
-        public void UpdateModel(string accountNumber, IDomainEvent domainEvent, int version)
+        public long GetStartingPosition()
+        {
+            AccountInformationCheckpoint checkpoint = _accountContext.AccountCheckpoints.FirstOrDefaultAsync(c => c.Id == 1).Result;
+            if (checkpoint == null)
+            {
+                checkpoint = new AccountInformationCheckpoint 
+                {
+                    Checkpoint = 0
+                };
+                _accountContext.AccountCheckpoints.Add(checkpoint);
+                _accountContext.SaveChanges();   
+            }
+
+            return checkpoint.Checkpoint;
+        }
+
+        public void UpdateModel(string accountNumber, IDomainEvent domainEvent, int version, long position)
         {
             if (string.IsNullOrWhiteSpace(accountNumber))
                 return;
 
-            var context = _serviceProvider.GetRequiredService<AccountInformationContext>();
-            
-            AccountInformation account = context.Accounts.FirstOrDefaultAsync(information => information.AccountNumber == accountNumber).Result;
+            AccountInformation account = _accountContext.Accounts.FirstOrDefaultAsync(information => information.AccountNumber == accountNumber).Result;
 
             if (account == null)
             {
                 account = new AccountInformation();
 
-                context.Accounts.Add(account);
+                _accountContext.Accounts.Add(account);
             }
 
             UpdateInformation(account, domainEvent, version);
 
-            context.SaveChanges();
+            AccountInformationCheckpoint checkout = _accountContext.AccountCheckpoints.FirstOrDefaultAsync(c => c.Id == 1).Result;
+            checkout.Checkpoint = position;
+            try
+            {
+                _accountContext.SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
-        private void UpdateInformation(AccountInformation info, IDomainEvent domainEvent, int version)
+        private bool UpdateInformation(AccountInformation info, IDomainEvent domainEvent, int version)
         {
             if (info.Version != 0 && info.Version >= version)
-                return;
+            {
+                Console.WriteLine("Error");
+                return false;
+            }
 
             info.Version = version;
 
@@ -92,6 +122,8 @@
             {
                 info.Balance += cardTransactionEvent.Amount;
             }
+
+            return true;
         }
     }
 }
