@@ -155,7 +155,7 @@
             var metadataJson = JsonConvert.SerializeObject(domainEvent.Metadata);
 
             var data = Encoding.UTF8.GetBytes(dataJson);
-            var metadata = Encoding.UTF8.GetBytes(metadataJson);
+            var metadata = Encoding.UTF8.GetBytes(metadataJson); 
 
             return new EventData(Guid.NewGuid(), domainEvent.GetType().FullName, true, data, metadata);
         }

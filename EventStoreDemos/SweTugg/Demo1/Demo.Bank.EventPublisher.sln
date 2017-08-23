@@ -1,34 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{F995BF3E-2C31-445B-A036-1BCE4F3FE8F9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Subscribers", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Subscribers\Demo.EventStore.Lib.Subscribers.xproj", "{39198184-54F7-4602-BA0E-91D6331C3A53}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ED38CD4F-C642-4E9B-89A2-2BAF36BEC89D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.EventPublisher", "src\Demo.Bank.EventPublisher\Demo.Bank.EventPublisher.xproj", "{ECD66AD9-E231-4303-BC8D-16C85641D6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.EventStore.Lib.Subscribers", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Subscribers\Demo.EventStore.Lib.Subscribers.csproj", "{39198184-54F7-4602-BA0E-91D6331C3A53}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F3C41BC-087C-48F6-9C57-E899371C6DBA}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.EventPublisher", "src\Demo.Bank.EventPublisher\Demo.Bank.EventPublisher.csproj", "{ECD66AD9-E231-4303-BC8D-16C85641D6CD}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Common", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Common\Demo.EventStore.Lib.Common.xproj", "{F9112698-658E-4626-8127-6AA89B2D596E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.EventStore.Lib.Common", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Common\Demo.EventStore.Lib.Common.csproj", "{F9112698-658E-4626-8127-6AA89B2D596E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.Domain", "src\Demo.Bank.Domain\Demo.Bank.Domain.xproj", "{A8599AC7-7337-43C7-B9C9-819E001DDE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.Domain", "src\Demo.Bank.Domain\Demo.Bank.Domain.csproj", "{A8599AC7-7337-43C7-B9C9-819E001DDE7A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.ReadStoreSync", "src\Demo.Bank.ReadStoreSync\Demo.Bank.ReadStoreSync.xproj", "{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.ReadStoreSync", "src\Demo.Bank.ReadStoreSync\Demo.Bank.ReadStoreSync.csproj", "{9034A3A2-9BDD-402D-ABFE-9EEFE9073538}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.EventStore.Lib.Write", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Write\Demo.EventStore.Lib.Write.xproj", "{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.EventStore.Lib.Write", "..\..\EventStoreLibs\src\Demo.EventStore.Lib.Write\Demo.EventStore.Lib.Write.csproj", "{6C2C2654-562E-4820-A1EB-E9CDC36F8EF7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.WebApi", "src\Demo.Bank.WebApi\Demo.Bank.WebApi.xproj", "{76C573FA-1DF4-42D9-ACA6-CA5E76AF2F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.WebApi", "src\Demo.Bank.WebApi\Demo.Bank.WebApi.csproj", "{76C573FA-1DF4-42D9-ACA6-CA5E76AF2F74}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.Sql", "src\Demo.Bank.Sql\Demo.Bank.Sql.xproj", "{B5894438-625E-4848-A5D4-E5972A78842E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.Sql", "src\Demo.Bank.Sql\Demo.Bank.Sql.csproj", "{B5894438-625E-4848-A5D4-E5972A78842E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo.Bank.EventPublisher2", "src\Demo.Bank.EventPublisher2\Demo.Bank.EventPublisher2.xproj", "{E78C17D3-4570-4B66-9129-99465092FB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Bank.EventPublisher2", "src\Demo.Bank.EventPublisher2\Demo.Bank.EventPublisher2.csproj", "{E78C17D3-4570-4B66-9129-99465092FB76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

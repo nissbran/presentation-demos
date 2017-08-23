@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>Demo.Bank.EventPublisher</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Demo.Bank.EventPublisher</PackageId>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.Bank.Domain\Demo.Bank.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\EventStoreLibs\src\Demo.EventStore.Lib.Write\Demo.EventStore.Lib.Write.csproj" />
+  </ItemGroup>
+
+</Project>

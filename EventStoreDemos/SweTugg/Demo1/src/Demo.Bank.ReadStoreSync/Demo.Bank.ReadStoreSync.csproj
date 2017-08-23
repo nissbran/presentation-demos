@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>Demo.Bank.ReadStoreSync</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Demo.Bank.ReadStoreSync</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\EventStoreLibs\src\Demo.EventStore.Lib.Subscribers\Demo.EventStore.Lib.Subscribers.csproj" />
+    <ProjectReference Include="..\Demo.Bank.Domain\Demo.Bank.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+    <ProjectReference Include="..\Demo.Bank.Sql\Demo.Bank.Sql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>
